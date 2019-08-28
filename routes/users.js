@@ -24,7 +24,6 @@ router.post('/login', function (req, res) {
         }
 
         if (data) {          //성공시 작동함
-          // console.dir(data);
           console.log("로그인 성공!");
           req.session.user_id = req.body.user, // 아이디
             req.session.name = req.body.name // 이름
@@ -53,8 +52,42 @@ router.get('/signup', function(req, res){
   res.end();
 }); //회원가입
 
-router.get('/findpw', function (req, res) {
-  res.send('FindPW Success!')
-  res.end();
+router.get('/findpw', function(req, res){
+  res.render('../views/Login_Helper/FindPW.ejs')
+});
+
+router.post('/search', function (req, res) {
+  var ID = req.body.user || req.query.user;
+  console.log('요청한 ID : ' + ID);
+
+  if (db) {
+    db.findPassword(ID, function (err, data) {
+      if (db) {
+        if (err) {
+          console.log(err);
+          res.status(401).send('<script type="text/javascript">alert("에러 발생!"); document.location.href="/";</script>');
+          res.end();
+          return;
+        }
+
+        if (data) {
+          console.log("비밀번호 발견: " + data);
+          res.status(401).send('<script type="text/javascript">alert("당신의 비밀번호는 ' + data[0].passwords + ' 입니다."); document.location.href="/";</script>');
+          res.end();
+        }
+        else {
+          console.log('유저가 존재하지 않음');
+          res.status(401).send('<script type="text/javascript">alert("유저가 존재하지 않습니다!"); document.location.href="/";</script>');
+          res.end();
+        }
+      }
+      else {
+        console.log('DB 연결 안됨');
+        res.status(401).send('<script type="text/javascript">alert("DB가 연결되어 있지 않습니다!"); document.location.href="/";</script>');
+        res.end();
+      }
+    }
+    );
+  }
 }); //비밀번호 찾기
 module.exports = router;
