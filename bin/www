@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('help:server');
 var http = require('http');
+var database = require('../models/DB');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,11 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+/*
+ * DB 연결 함
+ */
+database.connectDB();
 
 /**
  * Listen on provided port, on all network interfaces.
