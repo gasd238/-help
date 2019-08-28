@@ -4,7 +4,7 @@ var db = require('../models/DB')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {title: 'Help'});
+  res.render('index', {title: '!help'});
 }); //메인 화면(로그인 페이지)
 
 router.get('/findpw', function (req, res) {

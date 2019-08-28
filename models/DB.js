@@ -5,7 +5,7 @@ var database;
 
 exports.connectDB = function () {
     var databaseURL = 'mongodb://localhost:27017';
-    MongoClient.connect(databaseURL, { useNewUrlParser: true },
+    MongoClient.connect(databaseURL, { useNewUrlParser: true, useUnifiedTopology: true },
         function (err, client) {
             if (err) {
                 console.log('MongoDB 접속 실패: ', err);
