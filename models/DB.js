@@ -39,3 +39,27 @@ exports.authUser = function (id, password, callback) {
     );
 
 }; //로그인
+
+exports.findPassword = function (id, callback) {
+    var members = database.collection('members');
+    var result = members.find({ "id": id });
+    
+    result.toArray(
+        function (err, data) {
+            if (err) {
+                callback(err, null);
+                return;
+            }
+
+            if (data.length > 0) {
+                console.log('사용자를 찾았어요: ' + result.count());
+                callback(null, data);
+            }
+            else {
+                console.log('사용자를 찾지 못했어요..');
+                callback(null, null);
+            }
+        }
+
+    );
+}; //비밀번호 찾기
