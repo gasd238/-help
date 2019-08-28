@@ -2,20 +2,9 @@
   font-family: Argon;
   src: url('../fonts/ArgonPERSONAL-Regular.otf');
 }
-@font-face {
-  font-family: Break;
-  src: url('../fonts/break\ regular.ttf');
-}
-@font-face {
-  font-family: Chemin;
-  src: url('../fonts/Chemin.ttf');
-}
-@font-face {
-  font-family: Futures;
-  src: url('../fonts/Futures.otf');
-}
 
 body {
+  background-color:#f3f3f3;
   padding: 50px;
   font: 14px 나눔고딕, Helvetica, Arial, sans-serif;
 }
