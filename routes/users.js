@@ -3,12 +3,7 @@ var router = express.Router();
 var db = require('../models/DB')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
 router.post('/login', function (req, res) {
-  console.log('user/login 호출됨');
   var ID = req.body.id || req.query.id;                  //아이디를 받아옴
   var PW = req.body.password || req.query.password;      //비밀번호를 받아옴
   console.log('ID : ' + ID + ', PW : ' + PW);
@@ -26,10 +21,9 @@ router.post('/login', function (req, res) {
         if (data) {          //성공시 작동함
           console.log("로그인 성공!");
           req.session.user_id = req.body.user, // 아이디
-            req.session.name = req.body.name // 이름
-          res.status(200).send('<script type="text/javascript">alert("로그인 성공!"); document.location.href="/";</script>');
+          req.session.name = req.body.name // 이름
+          res.redirect('/');
           res.end();
-
         }
         else {                //유저가 없을 경우
           console.log('유저가 존재하지 않음');
@@ -157,5 +151,11 @@ router.post('/adduser', function (req, res) {
     }
   }
 }); //회원가입 정보 전송
+
+router.get('/logout', function (req, res) {
+  delete req.session.user_id;
+  delete req.session.name;
+  res.redirect('/');
+}); //로그아웃
 
 module.exports = router;
