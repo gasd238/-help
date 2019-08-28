@@ -43,7 +43,7 @@ exports.authUser = function (id, password, callback) {
 exports.findPassword = function (id, callback) {
     var members = database.collection('members');
     var result = members.find({ "id": id });
-    
+
     result.toArray(
         function (err, data) {
             if (err) {
@@ -63,3 +63,49 @@ exports.findPassword = function (id, callback) {
 
     );
 }; //비밀번호 찾기
+
+exports.addUser = function (id, passwords, nick, callback) {
+    var members = database.collection('members');
+
+    members.insertMany([{ "id": id, "passwords": passwords, "nickname": nick }],
+        function (err, result) {
+            if (err) {
+                callback(err, null);
+                return;
+            }
+
+            if (result.insertedCount > 0) {
+                callback(null, result);
+            }
+            else {
+                callback(null, null);
+            }
+
+        }
+    );
+}; //회원가입
+
+exports.sameUser = function (id, callback) {
+    var members = database.collection('members');
+    var result = members.find({ "id": id });
+
+    result.toArray(
+        function (err, data) {
+            if (err) {
+                callback(err, null);
+                return;
+            }
+
+            if (data.length > 0) {
+                console.log('일치하는 유저: ' + result.count());
+                console.log(data);
+                callback(null, data);
+            }
+            else {
+                console.log('일치하는 유저 없음');
+                callback(null, true);
+            }
+        }
+
+    );
+}; //아이디 중복 확인
