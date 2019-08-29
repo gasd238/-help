@@ -5,12 +5,21 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/index.css' />
+    <link rel='stylesheet' href='/stylesheets/exchange.css' />
   </head>
   <body>
     <h1><%= title %></h1>
     <h2>교환소!</h2>
     <div>
       <div>당신이 가지고 있는 포인트는?<br> <%=point %> 포인트에요!</div>
+    </div>
+    <div class="exchange">
+      <%for(priceNum = 0; priceNum<=14; priceNum++){%>
+        <figure>
+            <a href="http://localhost"><img src="http://localhost/exchange/imgs/<%=priceNum%>.png" class="goods" alt=""></a>
+            <figcaption>각자 db연동된 이름</figcaption>
+        </figure>
+      <%}%>
     </div>
     <div>
     </div>

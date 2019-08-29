@@ -1,0 +1,15 @@
+figure {
+    display: inline-block;
+    margin:10px;
+}
+
+.exchange{
+    margin-right:auto;
+    background-color : skyblue;
+}
+
+.goods{
+    width:150px;
+    height:150px;
+    border: 2px solid black;
+}
