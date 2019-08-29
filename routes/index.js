@@ -1,9 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../models/DB')
+var db = require('../models/loginDB')
+var database
+var post
 
 //글 불러오기
-var post = db.collection('post')
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, client){
+  database = client.db('help');
+  post = database.collection('post');
+}); 
 
 
 /* GET home page. */

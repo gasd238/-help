@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('help:server');
 var http = require('http');
-var database = require('../models/DB');
+var database = require('../models/loginDB');
 
 /**
  * Get port from environment and store in Express.
