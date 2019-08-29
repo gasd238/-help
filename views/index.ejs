@@ -5,16 +5,21 @@
     <title>Help</title>
     <link rel='stylesheet' href='/stylesheets/index.css' />
   </head>
+  
   <body>
-    <h1>Help</h1>
-    <p>Welcome to Help</p>
-    <div>
+    <div class="top-bar">
       <% if(islogin == 'login'){ %>
-      <a href='./users/logout'>로그아웃</a>
+      <a href='./users/logout' class="deco-none">로그아웃</a>
       <% } else { %>
-      <a href='./login'>로그인</a>
+      <a href='./login' class="deco-none">로그인</a>
       <% } %>
-      <a href='./Mypage'>마이페이지</a>
-      <a href="./exchange">교환소입니다!</a>
+      | <a href='./Mypage' class="deco-none" class="deco-none">마이페이지</a>
+      | <a href="./exchange" class="deco-none">교환소입니다!</a>
+    </div>
+    <div class="title">
+        <h1>Help</h1>
+    </div>
+    <p>Welcome to Help</p>
+    
   </body>
 </html>
