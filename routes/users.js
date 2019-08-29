@@ -13,27 +13,27 @@ router.post('/login', function (req, res) {
       if (db) {
         if (err) {           //에러를 표시해줌
           console.log(err);
-          res.status(401).send('<script type="text/javascript">alert("에러 발생!"); document.location.href="/";</script>');
+          res.send('<script type="text/javascript">alert("에러 발생!"); document.location.href="/";</script>');
           res.end();
           return;
         }
 
         if (data) {          //성공시 작동함
           console.log("로그인 성공!");
-          req.session.user_id = req.body.user, // 아이디
-          req.session.name = req.body.name // 이름
+          req.session.user_id = req.body.id, // 아이디
+          console.log(req.session.user_id);
           res.redirect('/');
           res.end();
         }
         else {                //유저가 없을 경우
-          console.log('유저가 존재하지 않음');
-          res.status(401).send('<script type="text/javascript">alert("유저가 존재하지 않습니다!"); document.location.href="/";</script>');
+          console.log('아이디/비밀번호 틀림');
+          res.send('<script type="text/javascript">alert("아이디 또는 비밀번호가 틀렸습니다!"); document.location.href="/";</script>');
           res.end();
         }
       }
       else {                  //DB가 연결이 안되었을 경우
         console.log('DB 연결 안됨');
-        res.status(401).send('<script type="text/javascript">alert("DB 연결 실패!"); document.location.href="/";</script>');
+        res.send('<script type="text/javascript">alert("DB 연결 실패!"); document.location.href="/";</script>');
         res.end();
       }
     }
@@ -55,25 +55,25 @@ router.post('/search', function (req, res) {
       if (db) {
         if (err) {
           console.log(err);
-          res.status(401).send('<script type="text/javascript">alert("에러 발생!"); document.location.href="/";</script>');
+          res.send('<script type="text/javascript">alert("에러 발생!"); document.location.href="/";</script>');
           res.end();
           return;
         }
 
         if (data) {
           console.log("비밀번호 발견: " + data);
-          res.status(401).send('<script type="text/javascript">alert("당신의 비밀번호는 ' + data[0].passwords + ' 입니다."); document.location.href="/";</script>');
+          res.send('<script type="text/javascript">alert("당신의 비밀번호는 ' + data[0].passwords + ' 입니다."); document.location.href="/";</script>');
           res.end();
         }
         else {
           console.log('유저가 존재하지 않음');
-          res.status(401).send('<script type="text/javascript">alert("유저가 존재하지 않습니다!"); document.location.href="/";</script>');
+          res.send('<script type="text/javascript">alert("유저가 존재하지 않습니다!"); document.location.href="/";</script>');
           res.end();
         }
       }
       else {
         console.log('DB 연결 안됨');
-        res.status(401).send('<script type="text/javascript">alert("DB가 연결되어 있지 않습니다!"); document.location.href="/";</script>');
+        res.send('<script type="text/javascript">alert("DB가 연결되어 있지 않습니다!"); document.location.href="/";</script>');
         res.end();
       }
     }
@@ -89,7 +89,7 @@ router.post('/adduser', function (req, res) {
   console.log('ID : ' + ID + ', PW : ' + PW + ' Name: ' + Name + ' PW_Correct ' + PW_Correct);
 
   if (ID == null || PW == null) {
-    res.status(401).send('<script type="text/javascript">alert("아이디 또는 비밀번호를 입력해주세요!"); document.location.href="/";</script>');
+    res.send('<script type="text/javascript">alert("아이디 또는 비밀번호를 입력해주세요!"); document.location.href="/";</script>');
     res.end();
   } else {
     if (PW == PW_Correct) {
@@ -98,7 +98,7 @@ router.post('/adduser', function (req, res) {
           function (err, show) {
             if (err) {
               console.log(err);
-              res.status(401).send('<script type="text/javascript">alert("에러가 발생했습니다."); document.location.href="/";</script>');
+              res.send('<script type="text/javascript">alert("에러가 발생했습니다."); document.location.href="/";</script>');
               res.end();
               return;
             }
@@ -106,7 +106,7 @@ router.post('/adduser', function (req, res) {
             if (show) {
               if (show != true) {
                 console.log('유저가 이미 존재함!');
-                res.status(401).send('<script type="text/javascript">alert("이미 있는 회원입니다."); document.location.href="/";</script>');
+                res.send('<script type="text/javascript">alert("이미 있는 회원입니다."); document.location.href="/";</script>');
                 res.end();
                 return;
               } else {
@@ -114,7 +114,7 @@ router.post('/adduser', function (req, res) {
                   function (err, result) {
                     if (err) {
                       console.log(err);
-                      res.status(401).send('<script type="text/javascript">alert("에러가 발생했습니다.")document.location.href="/";</script>');
+                      res.send('<script type="text/javascript">alert("에러가 발생했습니다.")document.location.href="/";</script>');
                       res.end();
                       return;
                     }
@@ -128,7 +128,7 @@ router.post('/adduser', function (req, res) {
                     }
                     else {
                       console.log('문제 발생!');
-                      res.status(401).send('<script type="text/javascript">alert("추가에 실패했습니다.")document.location.href="/";</script>');
+                      res.send('<script type="text/javascript">alert("추가에 실패했습니다.")document.location.href="/";</script>');
                       res.end();
                       return;
                     }
@@ -140,12 +140,12 @@ router.post('/adduser', function (req, res) {
         );
       } else {
         console.log('DB 연결 안됨');
-        res.status(401).send('<script type="text/javascript">alert("DB가 연결되어 있지 않습니다!"); document.location.href="/user";</script>');
+        res.send('<script type="text/javascript">alert("DB가 연결되어 있지 않습니다!"); document.location.href="/user";</script>');
         res.end();
         return;
       }
     } else {
-      res.status(401).send('<script type="text/javascript">alert("비밀번호가 일치하지 않습니다!"); document.location.href="/user";</script>');
+      res.send('<script type="text/javascript">alert("비밀번호가 일치하지 않습니다!"); document.location.href="/user";</script>');
       res.end();
       return;
     }
