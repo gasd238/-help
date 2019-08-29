@@ -20,7 +20,10 @@ router.get('/signup', function (req, res) {
 }); //회원가입 창
 
 router.get('/login', function (req, res) {
-  res.render('../views/login.ejs')
+  res.render('../views/User/login.ejs');
 });
 
+router.get('/Mypage', function(req, res){
+  res.render('../views/User/MyPage.ejs');
+});
 module.exports = router;
