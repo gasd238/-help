@@ -5,8 +5,26 @@
 
 body {
   background-color:#f3f3f3;
-  padding: 50px;
+  margin-left: 1em;
+  margin-right: 1em;
   font: 14px 나눔고딕, Helvetica, Arial, sans-serif;
+}
+
+.top-bar{
+  margin-top: 1em;
+  margin-right: 0px;
+  text-align: right;
+  color: aqua;
+}
+
+.deco-none{
+  text-decoration: none !important;
+}
+
+.title{
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center;
 }
 
 h1{
