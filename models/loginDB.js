@@ -132,3 +132,7 @@ exports.profile = function (id, callback) {
 
     );
 }; //마이페이지 프로필 가져오기
+
+exports.editprofile = function (id, callback){
+    var members = database.collection('members');
+}; //프로필 수정
