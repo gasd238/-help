@@ -3,23 +3,26 @@
   src: url('../fonts/ArgonPERSONAL-Regular.otf');
 }
 
-.name{
-  margin-right: 60%; 
-  font-size: 60px;
+.myInfo{
+  position: block ;
+  padding-top: 20%;
+  font: 14px 나눔고딕, Helvetica, Arial, sans-serif;
+  display: block;
 }
 
 .description{
   margin-right: 60%; 
   font-size: 20px;
+  position: relative;
 }
 
 .detail{
-  position:fixed;
+  position: relative;
   z-index:1;
   top:64.25%;
   left:50%;
   transform: translate(-50%, -50%); 
-  width: 70%;
+  width: 90%;
   border: 2px solid gray;
   color:gray;
   background-color:#9999
@@ -27,9 +30,9 @@
 
 .mypage-card {
   color: gray;
-  position:fixed;
+  position: relative;
   z-index:1;
-  padding: 30px;
+  margin: 1rem;
   width: 70%;
   background-color:#9999;
   top:40%;
@@ -40,9 +43,10 @@
   overflow: hidden;
 } /*(아래 모두 포함)로그인 정보를 입력하는 폼 전체 구성*/
 
-.mypage-card h1 {
+.mypage-card b {
+  display: inline;
+  position: block;
   font-weight: 100;
-  text-align: center;
   font-size: 2.3em;
 }
 
@@ -65,4 +69,10 @@
   padding: 0 8px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+}
+
+.show_file{
+  height: 12rem;
+  margin : 1em 0 0 1em;
+  border-radius: 50%;
 }
