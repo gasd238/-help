@@ -13,7 +13,6 @@ MongoClient.connect(url, function(err, client){
   post = database.collection('post');
 }); 
 
-
 /* GET home page. */
 router.get('/', function(req, res) {
   post.find({}).toArray((err, posts)=>{
