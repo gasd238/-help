@@ -67,7 +67,7 @@ exports.findPassword = function (id, callback) {
 exports.addUser = function (id, passwords, nick, callback) {
     var members = database.collection('members');
 
-    members.insertMany([{ "id": id, "passwords": passwords, "nickname": nick }],
+    members.insertMany([{ "id": id, "passwords": passwords, "nickname": nick, "point": 0 }],
         function (err, result) {
             if (err) {
                 callback(err, null);

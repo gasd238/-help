@@ -135,12 +135,12 @@ router.post('/adduser', function (req, res) {
         );
       } else {
         console.log('DB 연결 안됨');
-        res.send('<script type="text/javascript">alert("DB가 연결되어 있지 않습니다!"); document.location.href="/user";</script>');
+        res.send('<script type="text/javascript">alert("DB가 연결되어 있지 않습니다!"); document.location.href="/";</script>');
         res.end();
         return;
       }
     } else {
-      res.send('<script type="text/javascript">alert("비밀번호가 일치하지 않습니다!"); document.location.href="/user";</script>');
+      res.send('<script type="text/javascript">alert("비밀번호가 일치하지 않습니다!"); document.location.href="/";</script>');
       res.end();
       return;
     }
@@ -152,5 +152,9 @@ router.get('/logout', function (req, res) {
   delete req.session.name;
   res.redirect('/');
 }); //로그아웃
+
+router.get('/editprofile', function(req, res){
+  res.render('../views/User/editprofile.ejs')
+});
 
 module.exports = router;
