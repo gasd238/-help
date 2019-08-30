@@ -37,6 +37,10 @@ router.get('/login', function (req, res) {
   res.render('../views/User/login.ejs');
 });
 
+router.get('/test', function (req, res) {
+  res.render('../views/User/test.ejs');
+});
+
 router.get('/Mypage', function(req, res){
   res.render('../views/User/MyPage.ejs');
 });
