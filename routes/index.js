@@ -37,8 +37,28 @@ router.get('/login', function (req, res) {
   res.render('../views/User/login.ejs');
 });
 
-router.get('/Mypage', function(req, res){
-  res.render('../views/User/MyPage.ejs');
+router.get('/mypage', function(req, res){
+  if (req.session.user_id != null) {
+    var id = req.session.user_id;
+
+    db.profile(id, function (err, show) {
+      if (err) {
+        console.log('오류 발생!');
+        res.send('<script type="text/javascript">alert("에러가 발생했습니다."); document.location.href="/";</script>');
+        res.end();
+        return;
+      }
+
+      if (show) {
+        console.log("이름: " + show[0].nickname);
+        res.render('../views/User/MyPage.ejs', { name: show[0].nickname, islogin: 'login'});
+        res.end();
+      }
+    });
+  } else {
+    res.send('<script type="text/javascript">alert("로그인을 먼저 해주세요!"); document.location.href="/";</script>');
+    res.end();
+  }
 });
 
 router.post('/writebooks', (req, res)=>{
