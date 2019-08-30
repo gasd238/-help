@@ -71,10 +71,10 @@ router.post('/writebooks', function(req, res){
   var post = req.body.post || req.query.post;
   var field = req.body.field || req.query.field;
   var town = req.body.town || req.query.town;
-  console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + name + ', 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
+  console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + req.session.name + ', 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
 
       if (writedb) {
-        writedb.addpost(title, writedate, name, post, field, town,
+        writedb.addpost(title, writedate, req.session.name, post, field, town,
           function (err, result) {
             if (err) {
               console.log(err);

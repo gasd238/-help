@@ -64,10 +64,10 @@ exports.findPassword = function (id, callback) {
     );
 }; //비밀번호 찾기
 
-exports.addUser = function (id, passwords, nick, callback) {
+exports.addUser = function (id, passwords, nick, email, phone, callback) {
     var members = database.collection('members');
 
-    members.insertMany([{ "id": id, "passwords": passwords, "nickname": nick, "point": 0 }],
+    members.insertMany([{ "id": id, "passwords": passwords, "nickname": nick, "email": email, "phone": phone, "point": 0 }],
         function (err, result) {
             if (err) {
                 callback(err, null);
@@ -133,7 +133,10 @@ exports.profile = function (id, callback) {
     );
 }; //마이페이지 프로필 가져오기
 
-exports.editprofile = function (id, callback){
+exports.editprofile = function (id, password, callback){
     var members = database.collection('members');
-    members.find({"id":id})
+    var result = members.updateMany({"id": id}, {$set: {"id": id, "passwords": password}});
+
+    console.log("업데이트 성공!");
+    callback(null, true);
 }; //프로필 수정

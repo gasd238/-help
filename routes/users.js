@@ -21,8 +21,8 @@ router.post('/login', function (req, res) {
         if (data) {          //성공시 작동함
           console.log("로그인 성공!");
           req.session.user_id = req.body.id, // 아이디
-          req.session.name = req.body.name // 이름
-          console.log(req.session.user_id + " | " + req.session.name);
+          req.session.password = req.body.password //비밀번호
+          console.log("아이디: " + req.session.user_id + "|" + "이름(실명): " + req.session.name + " | " + "비밀번호: " + req.session.password + " | " );
           res.redirect('/');
           res.end();
         }
@@ -82,6 +82,8 @@ router.post('/adduser', function (req, res) {
   var PW = req.body.pass || req.query.pass;
   var Name = req.body.name || req.query.name;
   var PW_Correct = req.body.pass_correct || req.query.pass_correct;
+  var Email = req.body.email || req.query.email;
+  var Phone = req.body.phone || req.body.phone;
   console.log('ID : ' + ID + ', PW : ' + PW + ' Name: ' + Name + ' PW_Correct ' + PW_Correct);
 
   if (ID == null || PW == null) {
@@ -106,7 +108,7 @@ router.post('/adduser', function (req, res) {
                 res.end();
                 return;
               } else {
-                db.addUser(ID, PW, Name,
+                db.addUser(ID, PW, Name, Email, Phone,
                   function (err, result) {
                     if (err) {
                       console.log(err);
@@ -157,8 +159,42 @@ router.get('/editprofile', function(req, res){
   res.render('../views/User/editprofile.ejs')
 });
 
-router.post('/editprofileprocess', (req, res)=>{
-  db.editprofile(req.session.user_id)
+router.post('/editprofileprocess', function(req, res){
+  var current_pass = req.body.current_pass || req.query.current_pass;
+  var change_pass = req.body.change_pass || req.query.change_pass;
+  var pass_correct = req.body.pass_correct || req.query.pass_correct;
+
+  if(current_pass == req.session.password){
+    if(change_pass == pass_correct){
+      db.editprofile(req.session.user_id, change_pass, function (err, success) {
+        if (err) {
+          console.log(err);
+        }
+
+        if (success) {
+          if (success == true) {
+            console.log('success');
+            if (req.session.user_id != null) {
+              res.send('<script type="text/javascript">alert("정보가 성공적으로 업데이트 되었습니다!"); document.location.href="/";</script>');
+            }
+            } else {
+              res.send('<script type="text/javascript">alert("로그인을 먼저 해주세요!"); document.location.href="/";</script>');
+              res.end();
+            }
+          } else {
+            console.log('오류 발생');
+          }
+      });
+    } else {
+      res.send('<script type="text/javascript">alert("비밀번호가 일치하지 않습니다!"); document.location.href="/users/editprofile";</script>');
+      res.end();
+      return;
+    }
+  } else {
+    res.send('<script type="text/javascript">alert("현재 비밀번호와 다릅니다!"); document.location.href="/users/editprofile";</script>');
+    res.end();
+    return;
+  }
 });
 
 module.exports = router;
