@@ -45,7 +45,7 @@ exports.AddGoods = function (obj, callback) {
         if(docs){
             callback();
         }else{
-            goods.insertOne({Name: obj.name, G_id: obj.code, Price: obj.price, Src:`http://localhost/exchange/imgs/${obj.code}.png`},
+            goods.insertOne({Name: obj.name, G_id: obj.code, Price: obj.price, Src:`http://localhost/exchange/imgs/${obj.code}.png`, Amount: obj.amount},
                 function(err, result){
                     if(err){
                         console.log(err.message)
@@ -56,7 +56,18 @@ exports.AddGoods = function (obj, callback) {
                 })
         }
     });
-}; //굿즈 추가하는 코드 사용법(localhost/exchange/:name/:code/:price)
+}; //굿즈 추가하는 코드 사용법(localhost/exchange/:name/:code/:price/:amount)
+
+exports.RemoveGoods = function(query, callback){
+    var goods = database.collection('goods');
+    goods.findOneAndDelete(query, (err, docs)=>{
+        if(err){
+            console.log(err.message);
+        }else{
+            callback();
+        }
+    })
+} //삭제하는 코드
 
 exports.LoadGoods = function (obj) {
     var goods = database.collection('goods');
@@ -79,3 +90,30 @@ exports.LoadPoint = function (id, callback) {
         }
     })
 }; // 사용자 포인트 조회
+
+exports.BuyGoods = function(id, G_id, callback){
+    var members = database.collection('members');
+    var goods = database.collection('goods');
+
+    goods.findOneAndUpdate({"G_id": G_id}, {
+        $inc: { Amount : -1}
+    }, (err, doc2)=>{
+        if(err){
+            console.log(err.message);
+        }else{
+            if(doc2.value.Amount <= 1){
+                goods.findOneAndDelete({"G_id": G_id});
+            }
+            members.findOneAndUpdate({"id": id}, {
+                $inc: { point: (-1 * doc2.value.Price) }
+            }, (err, docs)=>{
+                if(err){
+                    console.log(err.message);
+                }else{
+                    callback();
+                }
+            })
+        }
+    }
+    )
+}

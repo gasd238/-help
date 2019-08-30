@@ -1,4 +1,4 @@
-<!--교환소 페이지-->
+<!--결제의 결과 페이지-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,12 +13,7 @@
       <div>당신이 가지고 있는 포인트는?<br> <%=point %> 포인트에요!</div>
     </div>
     <div class="exchange">
-      <%for(priceNum = 0; priceNum<=goods.length-1; priceNum++){%>
-        <figure>
-            <a href="http://localhost/exchange/goods/<%=goods[priceNum].G_id%>"><img src="<%=goods[priceNum].Src%>" class="goods" alt=""></a>
-            <figcaption><%=goods[priceNum].Name%><br>가격     <%=goods[priceNum].Price%>포인트 <br>수량 : <%=goods[priceNum].Amount%></figcaption>
-        </figure>
-      <%}%>
+      결제 완료되었습니다.
     </div>
     <div>
     </div>
