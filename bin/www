@@ -9,6 +9,7 @@ var debug = require('debug')('help:server');
 var http = require('http');
 var database = require('../models/loginDB');
 var Exdatabase = require('../models/exchangeDB');
+var Writedatabase = require('../models/writeDB');
 
 /**
  * Get port from environment and store in Express.
@@ -28,6 +29,7 @@ var server = http.createServer(app);
  */
 database.connectDB();
 Exdatabase.connectDB();
+Writedatabase.connectDB();
 
 /**
  * Listen on provided port, on all network interfaces.
