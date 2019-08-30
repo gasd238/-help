@@ -67,7 +67,7 @@ exports.findPassword = function (id, callback) {
 exports.addUser = function (id, passwords, nick, callback) {
     var members = database.collection('members');
 
-    members.insertMany([{ "id": id, "passwords": passwords, "nickname": nick }],
+    members.insertMany([{ "id": id, "passwords": passwords, "nickname": nick, "point": 0 }],
         function (err, result) {
             if (err) {
                 callback(err, null);
@@ -109,3 +109,26 @@ exports.sameUser = function (id, callback) {
 
     );
 }; //아이디 중복 확인
+
+exports.profile = function (id, callback) {
+    var members = database.collection('members');
+
+    var result = members.find({ "id": id });
+    console.log(result);
+    result.toArray(
+        function (err, data) {
+            if (err) {
+                callback(err, null);
+                return;
+            }
+
+            if (data.length > 0) {
+                callback(null, data);
+            }
+            else {
+                callback(null, null);
+            }
+        }
+
+    );
+}; //마이페이지 프로필 가져오기

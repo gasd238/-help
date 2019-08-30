@@ -21,7 +21,8 @@ router.post('/login', function (req, res) {
         if (data) {          //성공시 작동함
           console.log("로그인 성공!");
           req.session.user_id = req.body.id, // 아이디
-          console.log(req.session.user_id);
+          req.session.name = req.body.name // 이름
+          console.log(req.session.user_id + " | " + req.session.name);
           res.redirect('/');
           res.end();
         }
@@ -40,11 +41,6 @@ router.post('/login', function (req, res) {
     );
   }
 }); //로그인
-
-router.get('/signup', function(req, res){
-  res.send('Success!')
-  res.end();
-}); //회원가입
 
 router.post('/search', function (req, res) {
   var ID = req.body.user || req.query.user;
@@ -120,9 +116,8 @@ router.post('/adduser', function (req, res) {
                     }
 
                     if (result) {
-                      console.dir(result);
                       console.log("회원가입 성공!");
-                      res.status(200).send('<script type="text/javascript">alert("회원가입 성공!로그인해주시기 바랍니다."); document.location.href="/";</script>');
+                      res.send('<script type="text/javascript">alert("회원가입 성공! 로그인해주시기 바랍니다."); document.location.href="/";</script>');
                       res.end();
                       return;
                     }
@@ -140,12 +135,12 @@ router.post('/adduser', function (req, res) {
         );
       } else {
         console.log('DB 연결 안됨');
-        res.send('<script type="text/javascript">alert("DB가 연결되어 있지 않습니다!"); document.location.href="/user";</script>');
+        res.send('<script type="text/javascript">alert("DB가 연결되어 있지 않습니다!"); document.location.href="/";</script>');
         res.end();
         return;
       }
     } else {
-      res.send('<script type="text/javascript">alert("비밀번호가 일치하지 않습니다!"); document.location.href="/user";</script>');
+      res.send('<script type="text/javascript">alert("비밀번호가 일치하지 않습니다!"); document.location.href="/";</script>');
       res.end();
       return;
     }
@@ -157,5 +152,9 @@ router.get('/logout', function (req, res) {
   delete req.session.name;
   res.redirect('/');
 }); //로그아웃
+
+router.get('/editprofile', function(req, res){
+  res.render('../views/User/editprofile.ejs')
+});
 
 module.exports = router;
