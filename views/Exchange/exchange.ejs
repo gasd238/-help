@@ -18,7 +18,7 @@
       <%for(priceNum = 0; priceNum<=goods.length-1; priceNum++){%>
         <figure>
             <a href="http://localhost/exchange/goods/<%=goods[priceNum].G_id%>"><img src="<%=goods[priceNum].Src%>" class="goods" alt=""></a>
-            <figcaption><%=goods[priceNum].Name%><br>가격     <%=goods[priceNum].Price%>포인트</figcaption>
+            <figcaption><%=goods[priceNum].Name%><br>가격     <%=goods[priceNum].Price%>포인트 <br>수량 : <%=goods[priceNum].Amount%></figcaption>
         </figure>
       <%}%>
     </div>
