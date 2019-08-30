@@ -135,4 +135,5 @@ exports.profile = function (id, callback) {
 
 exports.editprofile = function (id, callback){
     var members = database.collection('members');
+    members.find({"id":id})
 }; //프로필 수정

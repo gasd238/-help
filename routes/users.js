@@ -157,4 +157,8 @@ router.get('/editprofile', function(req, res){
   res.render('../views/User/editprofile.ejs')
 });
 
+router.post('/editprofileprocess', (req, res)=>{
+  db.editprofile(req.session.user_id)
+});
+
 module.exports = router;
