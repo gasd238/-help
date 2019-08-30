@@ -4,17 +4,19 @@ var db = require('../models/exchangeDB')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  db.GoodsList((err, data)=>{
-    res.render('../views/Exchange/exchange.ejs', {title : "!help", goods : data/*DB로 연결된 데이터 보내기 */});
+  db.LoadPoint(req.session.user_id, (docs)=>{
+    db.GoodsList((err, data)=>{
+      res.render('../views/Exchange/exchange.ejs', {title : "!help", goods : data, point : docs.point});
+    })
   })
-}); //메인 화면(로그인 페이지)
+}); //메인 화면(교환소 페이지)
 
 router.get('/Add/:name/:code/:price', (req,res,next)=>{
   db.AddGoods({name : req.params.name, code: req.params.code, price: req.params.price},
   function(){
     res.redirect('/');
   })
-})
+}) // DB에 데이터 넣는 법.
 
 router.get('/goods/:code', (req, res, next)=>{
   db.LoadGoods({query:{G_id: req.params.code}, callback: function(docs){

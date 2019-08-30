@@ -56,7 +56,7 @@ exports.AddGoods = function (obj, callback) {
                 })
         }
     });
-}; //굿즈 추가하는 코드
+}; //굿즈 추가하는 코드 사용법(localhost/exchange/:name/:code/:price)
 
 exports.LoadGoods = function (obj) {
     var goods = database.collection('goods');
@@ -67,4 +67,15 @@ exports.LoadGoods = function (obj) {
             obj.callback(docs);
         }
     });
-}; //굿즈 추가하는 코드
+}; //굿즈 정보 로딩하는 코드
+
+exports.LoadPoint = function (id, callback) {
+    var members = database.collection('members');
+    members.findOne({ "id": id }, function(err, docs){
+        if(err){
+            console.log(err.message);
+        }else{
+            callback(docs);
+        }
+    })
+}; // 사용자 포인트 조회
