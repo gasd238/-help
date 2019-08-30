@@ -38,3 +38,28 @@ a {
 .post{
   border: 3px solid black;
 }
+
+.dump{
+  font: 25px 나눔고딕;
+}
+
+.small-title{
+  font: 16px KoPubWorld돋움체 Light;
+  text-align: center;
+  border: 1px solid #79F1F2;
+  margin-left: 38%;
+  margin-right: 38%;
+  border-radius: 4px;
+  background-color: #79F1F2;
+  color: #3A506A;
+
+}
+/*와씨 존나 어렵네 빤스런*/
+.text-box{
+  border: 5px solid #83B4F0;
+  font: 16px KoPubWorld돋움체 Light;
+  margin-top: -12px;
+  border-collapse: collapse;
+  background-color: ghostwhite;
+ 
+}

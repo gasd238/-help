@@ -5,12 +5,14 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/index.css' />
     <link rel='stylesheet' href='/stylesheets/exchange.css' />
+    <script src="https://kit.fontawesome.com/ef6a31a5d4.js"></script>
+
   </head>
   <body>
-    <a href="http://localhost"><h1><%= title %></h1></a>
-    <h2>교환소!</h2>
+    <a href="http://localhost"><h1 class="title"><%= title %></h1></a>
+    <div class="small-title"><h2><i class="fas fa-star"></i>교환소!</h2></div>
     <div>
-      <div>당신이 가지고 있는 포인트는?<br> <%=point %> 포인트에요!</div>
+      <div class="text-box">당신이 가지고 있는 포인트는?<br> <%=point %> 포인트에요!</div>
     </div>
     <div class="exchange">
       <%for(priceNum = 0; priceNum<=goods.length-1; priceNum++){%>
