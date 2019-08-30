@@ -4,11 +4,16 @@ var db = require('../models/exchangeDB')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  db.LoadPoint(req.session.user_id, (docs)=>{
-    db.GoodsList((err, data)=>{
-      res.render('../views/Exchange/exchange.ejs', {title : "!help", goods : data, point : docs.point});
-    })
-  })
+  if (req.session.user_id != null) {
+    db.LoadPoint(req.session.user_id, (docs) => {
+      db.GoodsList((err, data) => {
+        res.render('../views/Exchange/exchange.ejs', { title: "!help", goods: data, point: docs.point });
+      });
+    });
+  } else {
+    res.send('<script type="text/javascript">alert("로그인을 먼저 해주세요!"); document.location.href="/";</script>');
+    res.end();
+  }
 }); //메인 화면(교환소 페이지)
 
 router.get('/Add/:name/:code/:price', (req,res,next)=>{
