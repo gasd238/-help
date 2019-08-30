@@ -1,1 +1,26 @@
-<!-- 프로필 수정 페이지 -->
+<!-- 프로필 수정 페이지-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Help :: 정보 수정</title>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+</head>
+
+<body>
+    <form action="./edituser" method="POST">
+        <div>
+            <h1>정보 수정</h1><br>
+            <form>
+                <input type="text" name="name" placeholder="닉네임">
+                <input type="password" name="current_pass" placeholder="현재 비밀번호">
+                <input type="password" name="change_pass" placeholder="바꿀 비밀번호">
+                <input type="password" name="pass_correct" placeholder="비밀번호 확인">
+                <input type="submit" name="edit" value="정보 수정">
+            </form>
+        </div>
+    </form>
+</body>
+
+</html>

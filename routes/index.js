@@ -13,7 +13,6 @@ MongoClient.connect(url, function(err, client){
   post = database.collection('post');
 }); 
 
-
 /* GET home page. */
 router.get('/', function(req, res) {
   post.find({}).toArray((err, posts)=>{
@@ -35,6 +34,10 @@ router.get('/signup', function (req, res) {
 
 router.get('/login', function (req, res) {
   res.render('../views/User/login.ejs');
+});
+
+router.get('/test', function (req, res) {
+  res.render('../views/User/test.ejs');
 });
 
 router.get('/mypage', function(req, res){
