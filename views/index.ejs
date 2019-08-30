@@ -29,7 +29,11 @@
       <p>분류: <%= post[i].field %></p>
       <p>지역: <%= post[i].town %></p>
       <hr>
-      <% } %>
+    <% } %>
+
+    <% if(islogin == 'login'){ %>
+      <a href="./writebooks">글쓰기</a>
+    <% } %>
     </div>
     <br>
   </body>

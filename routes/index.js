@@ -64,6 +64,10 @@ router.get('/mypage', function(req, res){
   }
 });
 
+router.get('/writebooks', function(req, res){
+  res.render('../views/Post/writepost.ejs');
+});
+
 router.post('/writebooks', (req, res)=>{
   try{
     var date = new Date();
