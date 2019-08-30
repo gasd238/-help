@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../models/writeDB');
+var writedb = require('../models/writeDB');
+var logindb = require('../models/loginDB');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  db.getpost(
+  writedb.getpost(
     function (err, data) {
     if (req.session.user_id != null) {
       res.render('../views/index.ejs', { islogin: 'login', post: data});
@@ -34,7 +35,7 @@ router.get('/mypage', function(req, res){
   if (req.session.user_id != null) {
     var id = req.session.user_id;
 
-    db.profile(id, function (err, show) {
+    logindb.profile(id, function (err, show) {
       if (err) {
         console.log('오류 발생!');
         res.send('<script type="text/javascript">alert("에러가 발생했습니다."); document.location.href="/";</script>');
@@ -59,18 +60,6 @@ router.get('/writebooks', function(req, res){
 });
 
 router.post('/writebooks', function(req, res){
-  // try{
-  
-  //   var writepost = {title : req.body.Title, writedate : writedate, name: req.session.Name, post: req.body.Post, field: req.body.Field, town: req.body.Town}
-
-  //   // console.log('제목 : ' + title + ', 수정 날짜 : ' + writedate + ', 닉네임: ' + name + ', 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
-
-  //   post.insertOne(writepost);
-  //   res.send('<script type="text/javascript">alert("글쓰기가 완료되었습니다."); document.location.href="/";</script>');
-  // }
-  // catch(exception){
-  //   res.send('<script type="text/javascript">alert("글쓰기를 실패하였습니다."); document.location.href="/writebooks";</script>');
-  // }
   var title = req.body.title || req.query.title;
   var date = new Date();
   var writedate = String(date.getFullYear()) + '년 ' + String(date.getMonth() + 1) + '월 ' + String(date.getDate()) + '일';
@@ -80,8 +69,8 @@ router.post('/writebooks', function(req, res){
   var town = req.body.town || req.query.town;
   console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + name + ', 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
 
-      if (db) {
-        db.addpost(title, writedate, name, post, field, town,
+      if (writedb) {
+        writedb.addpost(title, writedate, name, post, field, town,
           function (err, result) {
             if (err) {
               console.log(err);
