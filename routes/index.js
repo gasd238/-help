@@ -31,6 +31,10 @@ router.get('/test', function (req, res) {
   res.render('../views/User/test.ejs');
 });
 
+router.get('/test2', function (req, res) {
+  res.render('../views/User/test2.ejs');
+});
+
 router.get('/mypage', function(req, res){
   if (req.session.user_id != null) {
     var id = req.session.user_id;
