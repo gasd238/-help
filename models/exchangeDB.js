@@ -37,4 +37,34 @@ exports.GoodsList = function (callback) {
         }
     );
 
-}; //로그인
+}; //굿즈 전부 가져오는 코드
+
+exports.AddGoods = function (obj, callback) {
+    var goods = database.collection('goods');
+    goods.findOne({G_id:obj.code}, function(err,docs){
+        if(docs){
+            callback();
+        }else{
+            goods.insertOne({Name: obj.name, G_id: obj.code, Price: obj.price, Src:`http://localhost/exchange/imgs/${obj.code}.png`},
+                function(err, result){
+                    if(err){
+                        console.log(err.message)
+                    }else{
+                        console.log('data inserted')
+                        callback();
+                    }
+                })
+        }
+    });
+}; //굿즈 추가하는 코드
+
+exports.LoadGoods = function (obj) {
+    var goods = database.collection('goods');
+    goods.findOne(obj.query, function(err,docs){
+        if(err){
+            console.log(err.message)
+        }else{
+            obj.callback(docs);
+        }
+    });
+}; //굿즈 추가하는 코드

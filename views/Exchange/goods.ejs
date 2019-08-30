@@ -1,4 +1,4 @@
-<!--교환소 페이지http://localhost/exchange/imgs/.png-->
+<!--교환소 개별 페이지-->
 <% var point = 2000 %>
 <!DOCTYPE html>
 <html>
@@ -14,12 +14,10 @@
       <div>당신이 가지고 있는 포인트는?<br> <%=point %> 포인트에요!</div>
     </div>
     <div class="exchange">
-      <%for(priceNum = 0; priceNum<=goods.length-1; priceNum++){%>
         <figure>
-            <a href="http://localhost/exchange/goods/<%=goods[priceNum].G_id%>"><img src="<%=goods[priceNum].Src%>" class="goods" alt=""></a>
-            <figcaption><%=goods[priceNum].Name%><br>가격     <%=goods[priceNum].Price%>포인트</figcaption>
+            <img src="<%=GoodsData.Src%>" class="goods" alt="">
+            <figcaption><%=GoodsData.Name%><br>가격     <%=GoodsData.Price%>포인트</figcaption>
         </figure>
-      <%}%>
     </div>
     <div>
     </div>
