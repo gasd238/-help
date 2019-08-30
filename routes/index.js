@@ -6,11 +6,11 @@ var db = require('../models/writeDB');
 router.get('/', function(req, res) {
   db.getpost(
     function (err, data) {
-    if (req.session.user_id != null) {
-      res.render('../views/index.ejs', { islogin: 'login', post: data});
-    } else {
-      res.render('../views/index.ejs', { islogin: 'no', post: data});
-    }
+      if (req.session.user_id != null) {
+        res.render('../views/index.ejs', { islogin: 'login', post: data})
+      } else {
+        res.render('../views/index.ejs', { islogin: 'no', post: data});
+      } 
   });
 }); //메인 화면(로그인 페이지)
 
