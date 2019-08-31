@@ -29,11 +29,16 @@
     <p>위도: <%= post.latitude %></p>
     <p>경도: <%= post.longitude %></p>
     <hr>
-    <% if(name == post.name){ %>
+    <% if(user.name == post.name){ %>
     <form method="POST" action="/delpost">
       <input type="hidden" name="key" value=<%=post.key%>>
       <input type="submit" value="삭제!"></p>
     </form>
+    <% }else if(user.is_volunteer){ %>
+      <form method="POST" action="/attend">
+        <input type="hidden" name="key" value=<%=post.key%>>
+        <input type="submit" value="참가!"></p>
+      </form>
     <% } %>
     <br>
   </body>
