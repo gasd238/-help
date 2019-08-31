@@ -42,6 +42,22 @@ router.get('/adminpage', function(req, res){
   })
 });
 
+router.post('/mypage', (req, res, next)=>{
+  logindb.profile(req.session.user_id, (err, docs)=>{
+    if(err){
+      console.log(err.message);
+    }else{
+      logindb.editprofile_vol(docs, (err, docs)=>{
+        if(err){
+          console.log(err.message);
+        }else{
+          res.redirect('/');
+        }
+      })
+    }
+  })
+})
+
 router.get('/mypage', function(req, res){
   if (req.session.user_id != null) {
     var id = req.session.user_id;
@@ -62,7 +78,7 @@ router.get('/mypage', function(req, res){
         res.end();
         return;
       }
-      postdb.getmypost(req.session.name, function (err, data){
+      postdb.getmypost(show.name, function (err, data){
         if(data){
           for(i=0; i < data.length; i++){
             post_count += 1;
@@ -81,11 +97,11 @@ router.get('/mypage', function(req, res){
   }
 });
 
-router.get('/writebooks', function(req, res){
+router.get('/writepost', function(req, res){
   res.render('../views/Post/writepost.ejs');
 });
 
-router.post('/writebooks', function(req, res){
+router.post('/writeposts', function(req, res){
   var title = req.body.title || req.query.title;
   var date = new Date();
   var writedate = String(date.getFullYear()) + '년 ' + String(date.getMonth() + 1) + '월 ' + String(date.getDate()) + '일';
