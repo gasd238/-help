@@ -155,6 +155,22 @@ router.get('/editprofile', function(req, res){
   res.render('../views/User/editprofile.ejs')
 });
 
+router.post('/upvol', function(req,res,next){
+  db.profile(req.session.user_id, (err, docs)=>{
+    if(err){
+      console.log(err.message);
+    }else{
+      db.editprofile_vtime(docs, (err, docs)=>{
+        if(err){
+          console.log(err.message);
+        }else{
+          res.redirect('/');
+        }
+      })
+    }
+  })
+})
+
 router.post('/editprofileprocess', function(req, res){
   var current_pass = req.body.current_pass;
   var change_pass = req.body.change_pass;

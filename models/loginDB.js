@@ -129,13 +129,25 @@ exports.editprofile = function (obj, callback){
     callback(null, true);
 }; //프로필 수정
 
-exports.editprofile2 = function(profile, callback){
+exports.editprofile_vol = function(profile, callback){
     var members = database.collection('members');
     members.updateOne({"id" : profile.id}, {$set: {"is_volunteer": !profile.is_volunteer}},(err,docs)=>{
         if(err){
             console.log(err.message);
         }else{
             console.log("발룬티어 변경 완료");
+            callback(err, docs);
+        }
+    });
+}
+
+exports.editprofile_vtime = function(profile, callback){
+    var members = database.collection('members');
+    members.updateOne({"id" : profile.id}, {$set: {"vtime": parseInt(0)}},(err,docs)=>{
+        if(err){
+            console.log(err.message);
+        }else{
+            console.log("시간 변경 완료");
             callback(err, docs);
         }
     });

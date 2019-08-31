@@ -47,7 +47,7 @@ router.post('/mypage', (req, res, next)=>{
     if(err){
       console.log(err.message);
     }else{
-      logindb.editprofile2(docs, (err, docs)=>{
+      logindb.editprofile_vol(docs, (err, docs)=>{
         if(err){
           console.log(err.message);
         }else{
@@ -68,7 +68,7 @@ router.get('/mypage', function(req, res){
         res.end();
         return;
       }
-      postdb.getmypost(req.session.user_id, function (err, data){
+      postdb.getmypost(show.name, function (err, data){
         if(data){
           for(i=0; i < data.length; i++){
             post_count += 1;
