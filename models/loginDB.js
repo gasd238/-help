@@ -1,6 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
 const dbName = 'help'; // Database Name
-
 var database;
 
 exports.connectDB = function () {
@@ -67,7 +66,7 @@ exports.findPassword = function (id, callback) {
 exports.addUser = function (id, passwords, name, phone, callback) {
     var members = database.collection('members');
 
-    members.insertMany([{ "id": id, "passwords": passwords, "name": name, "phone": phone, "point": 0 }],
+    members.insertMany([{ "id": id, "passwords": passwords, "name": name, "phone": phone, "point": 0, "is_volunteer": false, "vtime": 0 }],
         function (err, result) {
             if (err) {
                 callback(err, null);

@@ -75,7 +75,7 @@ router.post('/search', function (req, res) {
 
 router.post('/adduser', function (req, res) {
   var ID = req.body.user || req.query.user;
-  var PW = req.body.pass || req.query.pass;
+  var PW = req.body.password || req.query.password;
   var Name = req.body.name || req.query.name;
   var PW_Correct = req.body.pass_correct || req.query.pass_correct;
   var Phone = req.body.phone || req.body.phone;
