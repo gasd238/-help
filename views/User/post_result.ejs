@@ -1,0 +1,29 @@
+<!--특정 게시글을 보여줌-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>!Help</title>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <link rel='stylesheet' href='/stylesheets/exchange.css' />
+</head>
+<script language="JavaScript">
+    function nextWin() { location = "/exchange" }
+</script>
+
+<body onLoad="setTimeout('nextWin()', 3000)">
+    <a href="http://localhost">
+        <h1><%= title %></h1>
+    </a>
+    <h2>교환소!</h2>
+    <div>
+        <div>당신이 가지고 있는 포인트는?<br> <%=point %> 포인트에요!</div>
+    </div>
+    <div class="exchange">
+        결제 완료되었습니다. 3초후 돌아갑니다...
+    </div>
+    <div>
+    </div>
+</body>
+
+</html>
