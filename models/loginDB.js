@@ -64,10 +64,10 @@ exports.findPassword = function (id, callback) {
     );
 }; //비밀번호 찾기
 
-exports.addUser = function (id, passwords, nick, email, phone, callback) {
+exports.addUser = function (id, passwords, name, phone, callback) {
     var members = database.collection('members');
 
-    members.insertMany([{ "id": id, "passwords": passwords, "nickname": nick, "email": email, "phone": phone, "point": 0 }],
+    members.insertMany([{ "id": id, "passwords": passwords, "name": name, "phone": phone, "point": 0 }],
         function (err, result) {
             if (err) {
                 callback(err, null);
