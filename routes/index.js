@@ -82,11 +82,11 @@ router.get('/mypage', function(req, res){
   }
 });
 
-router.get('/writebooks', function(req, res){
+router.get('/writepost', function(req, res){
   res.render('../views/Post/writepost.ejs');
 });
 
-router.post('/writebooks', function(req, res){
+router.post('/writeposts', function(req, res){
   var title = req.body.title || req.query.title;
   var date = new Date();
   var writedate = String(date.getFullYear()) + '년 ' + String(date.getMonth() + 1) + '월 ' + String(date.getDate()) + '일';
