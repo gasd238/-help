@@ -12,6 +12,9 @@
   display: inline-block;
 }
 
+.submit{
+  width: 10rem;
+}
 .profile-card .profile-picture {
   width: 7.4rem;
 }

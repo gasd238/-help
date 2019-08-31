@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="title">
-        <a href="/"><h1>Help</h1></a>
+        <a href="/"><h1 class="title">Help</h1></a>
     </div> <!--이거 추가했어요-->
     <div class="container h-100">
         <div class="row justify-content-center align-items-center h-100">
@@ -35,7 +35,7 @@
                                 <h1>수정사항</h1>
                                 <input type="hidden" name="is_vol" value=<%= PInfo.is_volunteer %>>
                                 Are you volunteer?
-                                <p><input type="submit" value="<% if(PInfo.is_volunteer) { %>
+                                <p><input type="submit" class="submit" value="<% if(PInfo.is_volunteer) { %>
                                     No
                                     <% }else{ %>
                                     Yes
