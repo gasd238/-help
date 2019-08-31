@@ -22,23 +22,19 @@ router.post('/login', function (req, res) {
           console.log("로그인 성공!");
           req.session.user_id = req.body.id, // 아이디
           req.session.password = req.body.password //비밀번호
-          console.log("아이디: " + req.session.user_id + "|" + "이름(실명): " + req.session.name + " | " + "비밀번호: " + req.session.password + " | " );
           res.redirect('/');
           res.end();
-        }
-        else {                //유저가 없을 경우
+        } else {                //유저가 없을 경우
           console.log('아이디/비밀번호 틀림');
           res.send('<script type="text/javascript">alert("아이디 또는 비밀번호가 틀렸습니다!"); document.location.href="/";</script>');
           res.end();
         }
-      }
-      else {                  //DB가 연결이 안되었을 경우
+      } else {                  //DB가 연결이 안되었을 경우
         console.log('DB 연결 안됨');
         res.send('<script type="text/javascript">alert("DB 연결 실패!"); document.location.href="/";</script>');
         res.end();
       }
-    }
-    );
+    });
   }
 }); //로그인
 
@@ -197,4 +193,7 @@ router.post('/editprofileprocess', function(req, res){
   }
 });
 
+router.get('/adminpage', function(req, res){
+  res.render('../views/User/administerpage.ejs')
+});
 module.exports = router;
