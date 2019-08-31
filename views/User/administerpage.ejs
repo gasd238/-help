@@ -6,17 +6,38 @@
     <meta charset="UTF-8">
     <title>Help :: 관리자 사이트</title>
     <link rel='stylesheet' href='/stylesheets/index.css' />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
+<script language="javascript">
+    function changeSelect(s, no) {
+        form = document.ItemForm;
+        sel = s[s.selectedIndex].index;
+        dis = 1;
+
+        if (sel == "none") {
+            sel = "";
+            dis = 1;
+            form.code.disabled = dis;
+        }
+
+        if (no == 1) {
+            form.code.value = sel;
+        } else {
+            form.code.value = sel;
+        }
+    }
+</script>
+
 <body>
-        <% for(var i = 0; i < profile.length; i++) { %>
-            <xmp> 이름 : <%= profile[i].name %>     ID : <%= profile[i].id %>     전화번호 : <%= profile[i].phone %>     포인트 : <%= profile[i].point %>     자원봉사 : <%= profile[i].vtime %></xmp>
-            <% } %>
+    <% for(var i = 0; i < profile.length; i++) { %>
+        <xmp> 이름 : <%= profile[i].name %>     ID : <%= profile[i].id %>     전화번호 : <%= profile[i].phone %>     포인트 : <%= profile[i].point %>     자원봉사 : <%= profile[i].vtime %></xmp>
+    <% } %>
     
     <form method="POST" action="./admin/add">
         <!-- ID와 PW를 넘김 -->
         <h1>포인트 추가/삭제하기!(삭제시 -음수)</h1>
-        <label>유저</label>
+        <label>유저: </label>
         <select name="name">
             <% for(var i = 0; i < profile.length; i++) { %>
             <option><%= profile[i].name %></option>
@@ -29,9 +50,9 @@
     <form method="POST" action="./admin/v_add">
         <!-- ID와 PW를 넘김 -->
         <h1>봉사시간 추가/삭제하기!(삭제시 -음수)</h1>
-        <label>유저</label>
+        <label>유저: </label>
         <select name="name">
-            <% for(var i = 0; i < profile.length; i++) { %>
+            <% for(var i = 0; i < profile.length; i++) { %> 
             <option><%= profile[i].name %></option>
             <% } %>
         </select>
@@ -39,10 +60,30 @@
         <p><input type="submit" value="추가"></p>
     </form>
 
-    <form method="POST" action="./exchange/Add">        <!-- ID와 PW를 넘김 -->
+    <form name="ItemForm" method="POST" action="./exchange/Add">        <!-- ID와 PW를 넘김 -->
         <h1>상품 추가하기!</h1>
-        <p>상품명 : <input type="text" name="name"></p>
-        <p>코드(0~14) : <input type="number" name="code"></p>
+        <div>
+            상품명:  
+            <select name="name" onchange="changeSelect(this,1);">
+                <option>플레이스테이션 4</option>
+                <option>몬스터 헌터: 월드</option>
+                <option>삼성 Note 10</option>
+                <option>AirPot(에어팟)</option>
+                <option>Q-T1</option>
+                <option>핫식스</option>
+                <option>문화상품권 5000원</option>
+                <option>문화상품권 10000원</option>
+                <option>문화상품권 30000원</option>
+                <option>문화상품권 50000원</option>
+                <option>기프트카드 10000원</option>
+                <option>기프트카드 15000원</option>
+                <option>기프트카드 30000원</option>
+                <option>기프트카드 50000원</option>
+                <option>기프트카드 100000원</option>
+            </select>
+        </div>
+
+        <p>코드(0~14): <input type="text" name="code" size="1" /></p>
         <p>가격 : <input type="number" name="price"></p>
         <p>갯수 : <input type="number" name="amount"></p>
         <p><input type="submit" value="추가"></p>

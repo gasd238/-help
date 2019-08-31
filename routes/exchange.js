@@ -19,6 +19,7 @@ router.get('/', function(req, res, next) {
 router.post('/Add', (req,res,next)=>{
   db.AddGoods({name : req.body.name, price: parseInt(req.body.price), amount: parseInt(req.body.amount), code: parseInt(req.body.code)},
   function(){
+    console.log(req.body.name + " | " + parseInt(req.body.price) + " | " + parseInt(req.body.amount) + " | " + parseInt(req.body.code));
     res.redirect('/');
   })
 }) // DB에 데이터 넣는 법.
