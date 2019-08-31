@@ -17,11 +17,13 @@
             <img src="<%=GoodsData.Src%>" class="goods" alt="">
             <figcaption><%=GoodsData.Name%>
               <br>가격     <%=GoodsData.Price%>포인트
-              <br>코드 <%=GoodsData.G_id%>
               <br>수량 <%=GoodsData.Amount%>
             </figcaption>
         </figure>
-        
+        <form method="POST" action="/exchange/Buy">
+          <input type="hidden" name="G_id" value=<%=GoodsData.G_id%>>
+          <input type="submit" value="구매!"></p>
+        </form>
     </div>
     <div>
     </div>
