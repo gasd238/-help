@@ -1,3 +1,4 @@
+<!-- 마이 페이지 -->
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -8,7 +9,8 @@
     <title>!Help</title>
     <link rel='stylesheet' href='/stylesheets/Mypage.css' />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <body>
+
+<body>
     <div class="myInfo">
         <div class="mypage-card">
             <div>
@@ -57,6 +59,18 @@
         </div>
     </div>
     <div class="destail"></div>
-    </body>
+    <div class="article">
+        <% if(post != null) { %>
+        <% post.reverse(); %>
+        <% for(i = 0; i < post.length; i++) { %>
+        <hr>
+        <b><%= post[i].title %></b>
+        <hr>
+        <% } %>
+        <% } %>
+    </div>
+    </div>
+    <div class="detail"></div>
+</body>
 
 </html>

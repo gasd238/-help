@@ -111,9 +111,8 @@ exports.sameUser = function (id, callback) {
 
 exports.profile = function (id, callback) {
     var members = database.collection('members');
-
     var result = members.find({ "id": id });
-    console.log(result);
+
     result.toArray(
         function (err, data) {
             if (err) {
@@ -128,7 +127,6 @@ exports.profile = function (id, callback) {
                 callback(null, null);
             }
         }
-
     );
 }; //마이페이지 프로필 가져오기
 
