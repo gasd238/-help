@@ -60,12 +60,6 @@ exports.getmypost = function (name, callback) {
     );
 }; //자신의 글
 
-
-exports.addpost = function (title, date, name, post, field, town, callback) {
-    var posts = database.collection('post');
-}
-
-
 exports.addpost = function (title, date, name, post, field, town, callback) {
     var posts = database.collection('post');
 

@@ -143,7 +143,7 @@ exports.editprofile_vol = function(profile, callback){
 
 exports.editprofile_vtime = function(profile, callback){
     var members = database.collection('members');
-    members.updateOne({"id" : profile.id}, {$set: {"vtime": parseInt(0)}},(err,docs)=>{
+    members.updateOne({"id" : profile.id}, {$set: {"vtime": parseInt(0)}}, (err,docs)=>{
         if(err){
             console.log(err.message);
         }else{
@@ -156,12 +156,51 @@ exports.editprofile_vtime = function(profile, callback){
 exports.allprofile = (callback)=>{
     var members = database.collection('members');
     members.find({}).toArray((err, data)=>{
-        callback(null, data);
+        callback(err, data);
     })
 }; //관리자 페이지에 접속 시 모든 유저 정보를 가져옴
 
-exports.AddPoints = function (name, point, callback) {
+exports.AddPoints = function (obj, callback) {
     var members = database.collection('members');
-    members.updateMany({ "name": name }, { $set: { "point": point }});
-    console.log("success");
+    members.updateOne({ "name": obj.name }, { $set: { point : parseInt(obj.point) }}, function(err, data){
+        if (err){
+            callback(err, null);
+        } else {
+            callback(null, data);
+        }
+    });
 }; //포인트 추가
+
+exports.AddPoints = function (obj, callback) {
+    var members = database.collection('members');
+    members.updateOne({ "name": obj.name }, { $set: { point: parseInt(obj.point) }}, function (err, data) {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, data);
+        }
+    });
+}; //포인트 추가
+
+exports.v_time = function (obj, callback) {
+    var members = database.collection('members');
+    members.updateOne({ "name": obj.name }, { $set: { vtime: parseInt(obj.vtime) }}, function (err, data) {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, data);
+        }
+    });
+}; //포인트 추가
+
+exports.CurrentSet = function (name, callback) {
+    var members = database.collection('members');
+
+    members.findOne({ "name": name }, (err, data) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, data);
+        }
+    });
+}; //현재 유저 정보 가져옴
