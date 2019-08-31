@@ -112,13 +112,24 @@ exports.sameUser = function (id, callback) {
 exports.profile = function (id, callback) {
     var members = database.collection('members');
 
-    members.findOne({ "id": id }, (err, data) =>{
-        if (err) {
-            callback(err, null);
-        }else{
-            callback(null, data);
+    var result = members.find({ "id": id });
+    console.log(result);
+    result.toArray(
+        function (err, data) {
+            if (err) {
+                callback(err, null);
+                return;
+            }
+
+            if (data.length > 0) {
+                callback(null, data);
+            }
+            else {
+                callback(null, null);
+            }
         }
-    });
+
+    );
 }; //마이페이지 프로필 가져오기
 
 exports.editprofile = function (id, password, callback){
