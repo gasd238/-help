@@ -24,6 +24,10 @@
     <hr>
     <% //} %>
     <% //} %> -->
+    <% for(var i = 0; i < profile.length; i++) { %>
+        <xmp> 이름 : <%= profile[i].name %>     ID : <%= profile[i].id %>     전화번호 : <%= profile[i].phone %>     포인트 : <%= profile[i].point %> </xmp>
+    <% } %>
+    
     <hr>
     <form method="POST" action="./exchange/Add">        <!-- ID와 PW를 넘김 -->
         <h1>추가하기!</h1>

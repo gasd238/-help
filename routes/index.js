@@ -1,12 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var writedb = require('../models/writeDB');
+var postdb = require('../models/postDB');
 var logindb = require('../models/loginDB');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  writedb.getpost(
+  postdb.getpost(
     function (err, data) {
+      if(err){
+        console.log(err);
+      }
+
       if (req.session.user_id != null) {
         res.render('../views/index.ejs', { islogin: 'login', post: data})
       } else {
@@ -37,7 +41,6 @@ router.get('/test2', function (req, res) {
 
 router.get('/adminpage', function(req, res){
   logindb.allprofile((err, data)=>{
-    console.log(data)
     res.render('../views/User/administerpage.ejs', {profile: data})
   })
 });
@@ -45,10 +48,22 @@ router.get('/adminpage', function(req, res){
 router.get('/mypage', function(req, res){
   if (req.session.user_id != null) {
     var id = req.session.user_id;
+    logindb.profile(req.session.user_id, function (err, data) {
+      if (err) {
+        console.log(err);
+      }
+
+      if (data) {
+        req.session.name = data[0].name;
+        console.log(req.session.name);
+      }
+    });
+    var post_count = 0;
+    console.log(id + ", " + req.session.name);
 
     logindb.profile(id, function (err, show) {
-      if (err) {
-        console.log('오류 발생!');
+      if (err){
+        console.log("logindb: " + err);
         res.send('<script type="text/javascript">alert("에러가 발생했습니다."); document.location.href="/";</script>');
         res.end();
         return;
@@ -59,9 +74,7 @@ router.get('/mypage', function(req, res){
         console.log("이름: " + show.name);
         res.render('../views/User/MyPage.ejs', { name: show.name, islogin: 'login'});
         res.end();
-      }
-    });
-  } else {
+    } else {
     res.send('<script type="text/javascript">alert("로그인을 먼저 해주세요!"); document.location.href="/";</script>');
     res.end();
   }
