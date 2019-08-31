@@ -71,23 +71,22 @@ exports.getmypost = function (name, callback) {
     );
 }; //자신의 글
 
-exports.addpost = function (title, date, name, post, field, town, callback) {
+exports.addpost = function (obj, callback) {
     var posts = database.collection('post');
-
-    posts.insertMany([{ "title": title, "writedate": date, "name": name, "post": post, "field": field, "town": town }],
+    posts.insertMany([{ "title": obj.title, "writedate": obj.writedate, "name": obj.name,
+     "post": obj.post, "field": obj.field, "town": obj.town,
+    "latitude":parseFloat(obj.latitude), "longitude":parseFloat(obj.longitude), "key":obj.key }],
         function (err, result) {
             if (err) {
                 callback(err, null);
                 return;
             }
-
             if (result.insertedCount > 0) {
                 callback(null, result);
             }
             else {
                 callback(null, null);
             }
-
         }
     );
 }; //글 작성하기

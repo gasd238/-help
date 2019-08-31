@@ -101,25 +101,20 @@ router.get('/writepost', function(req, res){
   res.render('../views/Post/writepost.ejs');
 });
 
-// router.get('/readpost/:_id', function(req, res, next){
-
-//   postdb.readpost({_id : req.params._id},(err, docs)=>{
-//     if(err){
-//       console.log(err.message);
-//     }else{
-//       console.log(docs);
-//       res.render('../views/Post/readpost.ejs', {post : docs, islogin : 'login'});
-//     }
-//   })
-// })
+router.get('/readpost/:key', function(req, res, next){
+  postdb.readpost({"key" : req.params.key},(err, docs)=>{
+    if(err){
+      console.log(err.message);
+    }else{
+      console.log(docs);
+      res.render('../views/Post/readpost.ejs', {post : docs, islogin : 'login'});
+    }
+  })
+})
 
 router.post('/writeposts', function(req, res){
-  var title = req.body.title;
   var date = new Date();
   var writedate = String(date.getFullYear()) + '년 ' + String(date.getMonth() + 1) + '월 ' + String(date.getDate()) + '일';
-  var post = req.body.post;
-  var field = req.body.field;
-  var town = req.body.town;
   var key = Math.round( Math.random() * 0xFFFFFF ).toString(16);
 
   logindb.profile(req.session.user_id, function (err, data) {
@@ -127,10 +122,10 @@ router.post('/writeposts', function(req, res){
       console.log(err);
     }
     if (data) {
-      console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + data.name + ', 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
-
       if (postdb) {
-        postdb.addpost(title, writedate, data.name, post, field, town,
+        postdb.addpost({title:req.body.title, "writedate":writedate, name:data.name, post:req.body.post,
+           field:req.body.field, town:req.body.town, latitude:req.body.latitude,
+            longitude:req.body.longitude, "key":key},
           function (err, result) {
             if (err) {
               console.log(err);
