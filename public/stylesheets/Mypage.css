@@ -3,16 +3,6 @@
   src: url('../fonts/ArgonPERSONAL-Regular.otf');
 }
 
-.myInfo{
-  padding-top: 20%;
-}
-
-.description{
-  margin-right: 60%; 
-  font-size: 20px;
-  position: relative;
-}
-
 .detail{
   position: relative;
   z-index:1;
@@ -32,30 +22,11 @@
   z-index:1;
   width: 80%;
   background-color:#9999;
-  top:40%;
-  left:50%;
-  transform: translate(-50%, -50%); 
   border-radius: 2px;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 } /*(아래 모두 포함)로그인 정보를 입력하는 폼 전체 구성*/
 
-.mypage-card div b {
-  display: inline-block;
-  font-weight: 100;
-  font-size: 2.3em;
-}
-
-.mypage-card div{
-  position: relative;
-}
-
-.mypage-card input[type=submit] {
-  width: 100%;
-  display: block;
-  margin-bottom: 10px;
-  position: relative;
-}
 
 .mypage-card input[type=text], input[type=password] {
   height: 44px;
@@ -71,8 +42,19 @@
   -moz-box-sizing: border-box;
 }
 
-.show_file{
-  height: 12rem;
-  margin : 1em 0 0 1em;
-  border-radius: 50%;
+.profile-card .profile-picture {
+  width: 7.4rem;
+}
+
+.profile-card .social-section {
+  margin-top: 2rem;
+}
+
+.profile-card .social-section a {
+  font-size: 1.3rem;
+  padding: .2rem .6rem;
+}
+
+.article{
+  margin-top: 3rem;
 }

@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>!Help</title>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel='stylesheet' href='/stylesheets/Mypage.css' />
+
+
 </head>
-  
+
 <body>
-    <div class="myInfo">
-        <div class="mypage-card">
-            <div>
-                <a href="./users/editprofile"><img class="show_file" src="/Images/basic_images.jpg"/></a>
-                <b><%= name %></b>
+    <div class="container h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-sm-8 col-md-10 col-lg-20">
+                <div class="profile-card py-3 card shadow text-center">
+                    <div class="card-body py-4">
+                        <a href="./users/editprofile"><img class="profile-picture rounded-circle"
+                                src="Images/basic_images.jpg" /></a>
+                        <h2 class="text-warning h4 font-weight-bold mt-3 mb-1">
+                            대충 이름 들어갈곳
+                        </h2>
+                        <p class="text-muted text-uppercase font-weight-light">
+                            직책 / 상태란
+                        </p>
+                        <p class="px-3 mt-4">
+                            자기 소개 해보세요 Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Possimus rem placeat adipisci omnis commodi.
+                            Ducimus veniam repellendus perferendis natus cum molestiae eius culpa voluptates quaerat
+                            corporis. I
+                            psa nemo perspiciatis tenetur.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <p class="description">Hello, there!</p>
-        </div>
-        <div class="article">   
-            <b><%= name %>이거 글이나 타이틀로 교체해주세요!</b>
+            <div class="article">
+                <h3>(타이틀로 교체할 부분)</h3>(글이 드러가거나 공백)Lorem ipsum dolor sit amet consectetur adipisicing elit. A,
+                animi
+                doloribus nihil minus libero temporibus totam qui officiis accusamus corporis nulla! Ducimus, ex.
+                Culpa amet, atque vel incidunt natus repellendus.
+            </div>
+            <div class="destail"></div>
         </div>
     </div>
-    <div class="destail"></div>
+
+    </div>
 </body>
+
 </html>
