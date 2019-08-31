@@ -36,10 +36,21 @@ router.get('/test2', function (req, res) {
 });
 
 router.get('/adminpage', function(req, res){
+  if (req.session.user_id != null) {
   logindb.allprofile((err, data)=>{
-    console.log(data)
-    res.render('../views/User/administerpage.ejs', {profile: data})
+    logindb.profile(req.session.user_id, (err, docs)=>{
+      if(docs.grade == 'admin'){
+        res.render('../views/User/administerpage.ejs', {profile: data})
+      }else{
+        res.send('<script type="text/javascript">alert("관리자 전용 사이트입니다"); document.location.href="/";</script>');
+        res.end();
+      }
+    })
   })
+  } else {
+    res.send('<script type="text/javascript">alert("로그인을 먼저 해주세요!"); document.location.href="/";</script>');
+    res.end();
+  }
 });
 
 router.post('/mypage', (req, res, next)=>{
@@ -108,7 +119,7 @@ router.get('/readpost/:key', function(req, res, next){
         console.log(err.message);
       }else{
         logindb.profile(req.session.user_id, (err, data)=>{
-          res.render('../views/Post/readpost.ejs', {post : docs, islogin : 'login', name : data.name});
+          res.render('../views/Post/readpost.ejs', {post : docs, islogin : 'login', user : data});
         })
       }
     })
@@ -120,7 +131,19 @@ router.get('/readpost/:key', function(req, res, next){
 
 router.post('/delpost', function(req,res,next){
   postdb.delpost({"key":req.body.key}, (err, data)=>{
-    res.send('<script type="text/javascript">alert("글이 정상적으로 삭제되었습니다!"); document.location.href="/";</script>');
+    res.send(`<script type="text/javascript">alert("글이 정상적으로 삭제되었습니다!"); document.location.href="/post_result/${data.attender}";</script>`);
+    res.end();
+    return;
+  })
+})
+
+router.get('/post_result/:attender', function(req,res,next){
+  res.render('../views/Post/post_result.ejs', {title: '!help', attender:parseInt(req.params.attender)});
+})
+
+router.post('/attend', function(req,res,next){
+  postdb.attendpost({"key":req.body.key}, (err, data)=>{
+    res.send('<script type="text/javascript">alert("참가되었습니다!"); document.location.href="/";</script>');
     res.end();
     return;
   })
