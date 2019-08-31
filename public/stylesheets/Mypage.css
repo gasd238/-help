@@ -70,6 +70,18 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
+.profile-card .profile-picture {
+  width: 7.4rem;
+}
+
+.profile-card .social-section {
+  margin-top: 2rem;
+}
+
+.profile-card .social-section a {
+  font-size: 1.3rem;
+  padding: .2rem .6rem;
+}
 
 .show_file{
   height: 12rem;

@@ -1,26 +1,62 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>!Help</title>
     <link rel='stylesheet' href='/stylesheets/Mypage.css' />
-</head>
-  
-<body>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <body>
     <div class="myInfo">
         <div class="mypage-card">
             <div>
-                <a href="./users/editprofile"><img class="show_file" src="/Images/basic_images.jpg"/></a>
+                <a href="./users/editprofile"><img class="show_file" src="/Images/basic_images.jpg" /></a>
                 <b><%= name %></b>
             </div>
             <p class="description">Hello, there!</p>
         </div>
-        <div class="article">   
+        <div class="article">
             <b><%= name %>이거 글이나 타이틀로 교체해주세요!</b>
         </div>
     </div>
+    <div class="container h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+
+
+                <div class="profile-card py-3 card shadow text-center">
+                    <div class="card-body py-4">
+                        <img class="profile-picture rounded-circle"
+                            src="https://randomuser.me/api/portraits/women/50.jpg" />
+                        <h2 class="text-warning h4 font-weight-bold mt-3 mb-1">
+                            Sarah Smith
+                        </h2>
+                        <p class="text-muted text-uppercase font-weight-light">
+                            Graphic Designer
+                        </p>
+                        <p class="px-3 mt-4">
+                            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece
+                            of classical Latin literature from 45 BC.
+                        </p>
+                        <div class="d-flex social-section justify-content-center">
+                            <a class="text-warning" href=""><i class="fa fa fa-instagram"></i></a>
+                            <a class="text-warning" href=""><i class="fa fa fa-facebook"></i></a>
+                            <a class="text-warning" href=""><i class="fa fa fa-twitter"></i></a>
+                            <a class="text-warning" href=""><i class="fa fa fa-linkedin"></i></a>
+                            <a class="text-warning" href=""><i class="fa fa fa-google-plus"></i></a>
+                            <a class="text-warning" href=""><i class="fa fa fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
     <div class="destail"></div>
-</body>
+    </body>
+
 </html>
