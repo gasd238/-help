@@ -69,19 +69,11 @@ router.get('/mypage', function(req, res){
         return;
       }
 
-      postdb.getmypost(req.session.name, function (err, data){
-        if(err){
-          console.log("postdb: " + err);
-        }
-
-        for(i=0; i < data.length; i++){
-          post_count += 1;
-        }
-        console.log("이름: " + show[0].name + ", 글 개수: " + post_count);
-          res.render('../views/User/MyPage.ejs', { post: data, name: show[0].name, islogin: 'login' });
+      if (show) {
+        console.log(show);
+        console.log("이름: " + show.name);
+        res.render('../views/User/MyPage.ejs', { name: show.name, islogin: 'login'});
         res.end();
-      });
-    });
     } else {
     res.send('<script type="text/javascript">alert("로그인을 먼저 해주세요!"); document.location.href="/";</script>');
     res.end();
@@ -104,12 +96,11 @@ router.post('/writebooks', function(req, res){
     if (err) {
       console.log(err);
     }
-
     if (data) {
-      console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + data[0].name + ', 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
+      console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + data.name + '     , 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
 
-      if (postdb) {
-        postdb.addpost(title, writedate, data[0].name, post, field, town,
+      if (writedb) {
+        writedb.addpost(title, writedate, data.name, post, field, town,
           function (err, result) {
             if (err) {
               console.log(err);
