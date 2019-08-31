@@ -67,14 +67,20 @@ router.post('/writebooks', function(req, res){
   var title = req.body.title || req.query.title;
   var date = new Date();
   var writedate = String(date.getFullYear()) + '년 ' + String(date.getMonth() + 1) + '월 ' + String(date.getDate()) + '일';
-  var name = req.body.name || req.query.name;
   var post = req.body.post || req.query.post;
   var field = req.body.field || req.query.field;
   var town = req.body.town || req.query.town;
-  console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + req.session.name + ', 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
+
+  logindb.profile(req.session.user_id, function (err, data) {
+    if (err) {
+      console.log(err);
+    }
+
+    if (data) {
+      console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + data[0].nickname + ', 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
 
       if (writedb) {
-        writedb.addpost(title, writedate, req.session.name, post, field, town,
+        writedb.addpost(title, writedate, data[0].nickname, post, field, town,
           function (err, result) {
             if (err) {
               console.log(err);
@@ -102,6 +108,8 @@ router.post('/writebooks', function(req, res){
         res.end();
         return;
       }
+    }
+  });
 });  //글 작성
 
 module.exports = router;

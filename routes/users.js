@@ -22,23 +22,19 @@ router.post('/login', function (req, res) {
           console.log("로그인 성공!");
           req.session.user_id = req.body.id, // 아이디
           req.session.password = req.body.password //비밀번호
-          console.log("아이디: " + req.session.user_id + "|" + "이름(실명): " + req.session.name + " | " + "비밀번호: " + req.session.password + " | " );
           res.redirect('/');
           res.end();
-        }
-        else {                //유저가 없을 경우
+        } else {                //유저가 없을 경우
           console.log('아이디/비밀번호 틀림');
           res.send('<script type="text/javascript">alert("아이디 또는 비밀번호가 틀렸습니다!"); document.location.href="/";</script>');
           res.end();
         }
-      }
-      else {                  //DB가 연결이 안되었을 경우
+      } else {                  //DB가 연결이 안되었을 경우
         console.log('DB 연결 안됨');
         res.send('<script type="text/javascript">alert("DB 연결 실패!"); document.location.href="/";</script>');
         res.end();
       }
-    }
-    );
+    });
   }
 }); //로그인
 
@@ -87,7 +83,7 @@ router.post('/adduser', function (req, res) {
   console.log('ID : ' + ID + ', PW : ' + PW + ' Name: ' + Name + ' PW_Correct ' + PW_Correct);
 
   if (ID == null || PW == null) {
-    res.send('<script type="text/javascript">alert("아이디 또는 비밀번호를 입력해주세요!"); document.location.href="/";</script>');
+    res.send('<script type="text/javascript">alert("아이디 또는 비밀번호를 입력해주세요!"); document.location.href="/signup";</script>');
     res.end();
   } else {
     if (PW == PW_Correct) {
@@ -96,7 +92,7 @@ router.post('/adduser', function (req, res) {
           function (err, show) {
             if (err) {
               console.log(err);
-              res.send('<script type="text/javascript">alert("에러가 발생했습니다."); document.location.href="/";</script>');
+              res.send('<script type="text/javascript">alert("에러가 발생했습니다."); document.location.href="/singup";</script>');
               res.end();
               return;
             }
@@ -119,7 +115,7 @@ router.post('/adduser', function (req, res) {
 
                     if (result) {
                       console.log("회원가입 성공!");
-                      res.send('<script type="text/javascript">alert("회원가입 성공! 로그인해주시기 바랍니다."); document.location.href="/";</script>');
+                      res.send('<script type="text/javascript">alert("회원가입 성공! 로그인해주시기 바랍니다."); document.location.href="/login";</script>');
                       res.end();
                       return;
                     }
@@ -197,4 +193,7 @@ router.post('/editprofileprocess', function(req, res){
   }
 });
 
+router.get('/adminpage', function(req, res){
+  res.render('../views/User/administerpage.ejs')
+});
 module.exports = router;
