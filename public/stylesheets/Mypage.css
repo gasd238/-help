@@ -3,24 +3,13 @@
   src: url('../fonts/ArgonPERSONAL-Regular.otf');
 }
 
-.mypage-card {
-  color: gray;
-  position: relative;
-  display: block;
-  z-index:1;
-  width: 80%;
-  background-color:#9999;
-  border-radius: 2px;
-  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-} /*(아래 모두 포함)로그인 정보를 입력하는 폼 전체 구성*/
 
 .article{
   background: #d9d9d9;
   padding: 1.5rem;
   border-radius: 0.5rem;
   width: 70rem;
-  display: inline;
+  display: inline-block;
 }
 
 .profile-card .profile-picture {
