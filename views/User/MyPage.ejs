@@ -1,3 +1,4 @@
+<!-- 마이 페이지 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,9 +19,16 @@
             <p class="description">Hello, there!</p>
         </div>
         <div class="article">   
-            <b><%= name %>이거 글이나 타이틀로 교체해주세요!</b>
+            <% if(post != null) { %>
+            <% post.reverse(); %>
+            <% for(i = 0; i < post.length; i++) { %>
+            <hr>
+            <b><%= post[i].title %></b>
+            <hr>
+            <% } %>
+            <% } %>
         </div>
     </div>
-    <div class="destail"></div>
+    <div class="detail"></div>
 </body>
 </html>
