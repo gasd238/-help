@@ -72,6 +72,7 @@ exports.RemoveGoods = function(query, callback){
 exports.LoadGoods = function (obj) {
     var goods = database.collection('goods');
     goods.findOne(obj.query, function(err,docs){
+        console.log(obj.query.G_id);
         if(err){
             console.log(err.message)
         }else{

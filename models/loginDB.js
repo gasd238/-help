@@ -121,13 +121,37 @@ exports.profile = function (id, callback) {
     });
 }; //마이페이지 프로필 가져오기
 
-exports.editprofile = function (id, password, callback){
+exports.editprofile = function (obj, callback){
     var members = database.collection('members');
-    var result = members.updateMany({"id": id}, {$set: {"id": id, "passwords": password}});
+    members.updateOne({"id": id}, {$set: {"id": id, "passwords": password}});
 
     console.log("업데이트 성공!");
     callback(null, true);
 }; //프로필 수정
+
+exports.editprofile_vol = function(profile, callback){
+    var members = database.collection('members');
+    members.updateOne({"id" : profile.id}, {$set: {"is_volunteer": !profile.is_volunteer}},(err,docs)=>{
+        if(err){
+            console.log(err.message);
+        }else{
+            console.log("발룬티어 변경 완료");
+            callback(err, docs);
+        }
+    });
+}
+
+exports.editprofile_vtime = function(profile, callback){
+    var members = database.collection('members');
+    members.updateOne({"id" : profile.id}, {$set: {"vtime": parseInt(0)}},(err,docs)=>{
+        if(err){
+            console.log(err.message);
+        }else{
+            console.log("시간 변경 완료");
+            callback(err, docs);
+        }
+    });
+}
 
 exports.allprofile = (callback)=>{
     var members = database.collection('members');
