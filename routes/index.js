@@ -87,7 +87,7 @@ router.get('/mypage', function(req, res){
         }else{
           console.log("이름: " + show.name + ", 글 개수: " + 0);
         }
-        res.render('../views/User/MyPage.ejs', { post: data, name: show.name, islogin: 'login' });
+        res.render('../views/User/MyPage.ejs', { post: data, PInfo: show, islogin: 'login' });
         res.end();
       });
     });
