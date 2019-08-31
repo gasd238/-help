@@ -55,8 +55,8 @@ router.get('/mypage', function(req, res){
       }
 
       if (show) {
-        console.log("이름: " + show[0].nickname);
-        res.render('../views/User/MyPage.ejs', { name: show[0].nickname, islogin: 'login'});
+        console.log("이름: " + show[0].name);
+        res.render('../views/User/MyPage.ejs', { name: show[0].name, islogin: 'login'});
         res.end();
       }
     });
