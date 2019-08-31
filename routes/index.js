@@ -42,15 +42,21 @@ router.get('/adminpage', function(req, res){
   })
 });
 
-// router.post('/mypage', (req, req, next)=>{
-//   logindb.profile(req.session.user_id, (err, docs)=>{
-//     if(err){
-//       console.log(err.message);
-//     }else{
-      
-//     }
-//   })
-// })
+router.post('/mypage', (req, res, next)=>{
+  logindb.profile(req.session.user_id, (err, docs)=>{
+    if(err){
+      console.log(err.message);
+    }else{
+      logindb.editprofile2(docs, (err, docs)=>{
+        if(err){
+          console.log(err.message);
+        }else{
+          res.redirect('/');
+        }
+      })
+    }
+  })
+})
 
 router.get('/mypage', function(req, res){
   if (req.session.user_id != null) {

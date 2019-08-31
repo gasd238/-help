@@ -156,10 +156,9 @@ router.get('/editprofile', function(req, res){
 });
 
 router.post('/editprofileprocess', function(req, res){
-  var current_pass = req.body.current_pass || req.query.current_pass;
-  var change_pass = req.body.change_pass || req.query.change_pass;
-  var pass_correct = req.body.pass_correct || req.query.pass_correct;
-
+  var current_pass = req.body.current_pass;
+  var change_pass = req.body.change_pass;
+  var pass_correct = req.body.pass_correct;
   if(current_pass == req.session.password){
     if(change_pass == pass_correct){
       db.editprofile(req.session.user_id, change_pass, function (err, success) {
