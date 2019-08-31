@@ -16,22 +16,23 @@ router.get('/', function(req, res, next) {
   }
 }); //메인 화면(교환소 페이지)
 
-router.get('/Add/:name/:code/:price/:amount', (req,res,next)=>{
-  db.AddGoods({name : req.params.name, code: parseInt(req.params.code), price: parseInt(req.params.price), amount: parseInt(req.params.amount)},
+router.post('/Add', (req,res,next)=>{
+  db.AddGoods({name : req.body.name, price: parseInt(req.body.price), amount: parseInt(req.body.amount), code: parseInt(req.body.code)},
   function(){
     res.redirect('/');
   })
 }) // DB에 데이터 넣는 법.
 
-router.get('/Remove/:code', (req,res,next)=>{
-  db.RemoveGoods({G_id : req.params.code}, ()=>{
+router.post('/Remove', (req,res,next)=>{
+  db.RemoveGoods({G_id : parseInt(req.body.code)}, ()=>{
     res.redirect('/exchange');
   })
 }) //삭제하는 코드
 
-router.get('/Buy/:G_id', (req, res, next)=>{
+router.post('/Buy', (req, res, next)=>{
   db.LoadPoint(req.session.user_id, (docs)=>{
-    db.LoadGoods({query:{G_id: parseInt(req.params.G_id)}, callback: function(doc2){
+    console.log(req.body.G_id);
+    db.LoadGoods({query:{G_id: parseInt(req.body.G_id)}, callback: function(doc2){
       if(docs.point < doc2.Price){
         res.send('<script type="text/javascript">alert("잔액이 부족합니다"); document.location.href="/exchange";</script>');
         res.end();

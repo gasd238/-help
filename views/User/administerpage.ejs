@@ -9,6 +9,18 @@
 </head>
 
 <body>
-    
+    <form method="POST" action="./exchange/Add">        <!-- ID와 PW를 넘김 -->
+        <h1>추가하기!</h1>
+        <p>상품명 : <input type="text" name="name"></p>
+        <p>코드(0~14) : <input type="number" name="code"></p>
+        <p>가격 : <input type="number" name="price"></p>
+        <p>갯수 : <input type="number" name="amount"></p>
+        <p><input type="submit" value="추가"></p>
+    </form>
+    <form method="POST" action="./exchange/Remove">        <!-- ID와 PW를 넘김 -->
+        <h1>삭제하기!</h1>
+        <p>코드(0~14) : <input type="number" name="code"></p>
+        <p><input type="submit" value="삭제"></p>
+    </form>
 </body>
 </html>
