@@ -25,15 +25,20 @@ body {
   margin-left: 20%;
   margin-right: 20%;
   text-align: center;
+  
 }
 
-h1{
-  font: 30px Argon;
+.title h1{
+  font: 5rem Argon; 
 }
 
 a {
   color: #00B7FF;
-  text-decoration: none;
+  text-decoration: none !important;
+
+}
+a:hover{
+  color: #00B7FF;
 }
 
 .post{
