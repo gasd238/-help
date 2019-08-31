@@ -35,11 +35,11 @@
                                 <h1>수정사항</h1>
                                 <input type="hidden" name="is_vol" value=<%= PInfo.is_volunteer %>>
                                 Are you volunteer?
-                                <p><input type="submit" class="submit" value="<% if(PInfo.is_volunteer) { %>
-                                    No
+                                <p><input type="submit" class="submit" value=<% if(PInfo.is_volunteer) {%>
+                                    "No"
                                     <% }else{ %>
-                                    Yes
-                                    <% } %>"
+                                    "Yes"
+                                    <% } %>
                                     ></p>
                             </form>
                             <br>
@@ -55,12 +55,15 @@
             <div class="article">
                 <b>작성한 글 목록</b> <!--이것도 추가했어요-->
                 <br>
-                <% if(post != null) { %>
-                    <% post.reverse(); %>
-                    <% for(i = 0; i < post.length; i++) { %>
-                        <h3><%= post[i].title %></h3><%= post[i].post %>
+                    <% if(post != null) { %>
+                        <% post.reverse(); %>
+                        <% for(i = 0; i < post.length; i++) { %>
+                            <div class="article2"><h3><%= post[i].title %></h3><%= post[i].post %></div>
+                        <% } %>
                     <% } %>
-                <% } %>
+                
+                <br>
+                
             </div>
         </div>
     </div>

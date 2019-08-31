@@ -10,10 +10,20 @@
   border-radius: 0.5rem;
   width: 70rem;
   display: inline-block;
+  margin-top: 3rem;
+}
+
+.article2{
+  border: 2px, solid, red;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  width: 55rem;
+  display: inline-block;
+  margin: 3rem 2rem 0 2rem;
 }
 
 .submit{
-  width: 10rem;
+  width: 15rem;
 }
 .profile-card .profile-picture {
   width: 7.4rem;
@@ -26,8 +36,4 @@
 .profile-card .social-section a {
   font-size: 1.3rem;
   padding: .2rem .6rem;
-}
-
-.article{
-  margin-top: 3rem;
 }

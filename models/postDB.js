@@ -39,6 +39,17 @@ exports.getpost = function(callback){
     );
 }; //글 가져오기
 
+exports.readpost = function(query, callback){
+    var post = database.collection('post');
+    post.findOne(query, (err, docs)=>{
+        if(err){
+            console.log(err.message);
+        }else{
+            callback(err, docs);
+        }
+    })
+}
+
 exports.getmypost = function (name, callback) {
     var post = database.collection('post');
     var result = post.find({"name": name});
