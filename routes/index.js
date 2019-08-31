@@ -102,13 +102,27 @@ router.get('/writepost', function(req, res){
 });
 
 router.get('/readpost/:key', function(req, res, next){
-  postdb.readpost({"key" : req.params.key},(err, docs)=>{
-    if(err){
-      console.log(err.message);
-    }else{
-      console.log(docs);
-      res.render('../views/Post/readpost.ejs', {post : docs, islogin : 'login'});
-    }
+  if (req.session.user_id != null) {
+    postdb.readpost({"key" : req.params.key},(err, docs)=>{
+      if(err){
+        console.log(err.message);
+      }else{
+        logindb.profile(req.session.user_id, (err, data)=>{
+          res.render('../views/Post/readpost.ejs', {post : docs, islogin : 'login', name : data.name});
+        })
+      }
+    })
+  }else{
+    res.send('<script type="text/javascript">alert("로그인을 먼저 해주세요!"); document.location.href="/";</script>');
+    res.end();
+  }
+})
+
+router.post('/delpost', function(req,res,next){
+  postdb.delpost({"key":req.body.key}, (err, data)=>{
+    res.send('<script type="text/javascript">alert("글이 정상적으로 삭제되었습니다!"); document.location.href="/";</script>');
+    res.end();
+    return;
   })
 })
 

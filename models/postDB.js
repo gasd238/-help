@@ -90,3 +90,14 @@ exports.addpost = function (obj, callback) {
         }
     );
 }; //글 작성하기
+
+exports.delpost = function (query, callback){
+    var post = database.collection('post');
+    post.findOneAndDelete(query, (err, data)=>{
+        if(err){
+            console.log(err.message);
+        }else{
+            callback(err, data);
+        }
+    });
+}

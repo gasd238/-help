@@ -9,7 +9,7 @@
   <body>
     <div class="top-bar">
       <% if(islogin == 'login'){ %>
-      <a href='./users/logout' class="deco-none">로그아웃</a>
+      <a href='/users/logout' class="deco-none">로그아웃</a>
       <% } else { %>
       <a href='./login' class="deco-none">로그인</a>
       <% } %>
@@ -29,6 +29,12 @@
     <p>위도: <%= post.latitude %></p>
     <p>경도: <%= post.longitude %></p>
     <hr>
+    <% if(name == post.name){ %>
+    <form method="POST" action="/delpost">
+      <input type="hidden" name="key" value=<%=post.key%>>
+      <input type="submit" value="삭제!"></p>
+    </form>
+    <% } %>
     <br>
   </body>
 </html>
