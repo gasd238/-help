@@ -7,14 +7,16 @@
     <link rel='stylesheet' href='/stylesheets/exchange.css' />
   </head>
   <body>
-    <a href="http://localhost"><h1><%= title %></h1></a>
+      <div class="title">
+          <a href="/"><h1>Help</h1></a>
+      </div>
     <h2>교환소!</h2>
     <div>
-      <div>당신이 가지고 있는 포인트는?<br> <%=point %> 포인트에요!</div>
+      <div class="ex-font">당신이 가지고 있는 포인트는?<br> <%=point %> 포인트에요!</div>
     </div>
     <div class="exchange">
         <figure>
-            <img src="<%=GoodsData.Src%>" class="goods" alt="">
+            <img src="<%=GoodsData.Src%>" class="buy-image">
             <figcaption><%=GoodsData.Name%>
               <br>가격     <%=GoodsData.Price%>포인트
               <br>수량 <%=GoodsData.Amount%>
