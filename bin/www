@@ -10,7 +10,6 @@ var http = require('http');
 var database = require('../models/loginDB');
 var Exdatabase = require('../models/exchangeDB');
 var Writedatabase = require('../models/writeDB');
-const mongocrypt = require('mongocrypt');
 
 /**
  * Get port from environment and store in Express.
@@ -32,12 +31,6 @@ database.connectDB();
 Exdatabase.connectDB();
 Writedatabase.connectDB();
 
-if (mongocrypt.db.isConnected()) {
-  // Set the encryption key
-  // Important: It has to be a string with the length of 32
-  mongocrypt.encryption.set(qkwospdfrmvnchxzasopejwksdfretvn);
-  console.log("암호화 설정 완료!")
-}
 
 /**
  * Listen on provided port, on all network interfaces.
