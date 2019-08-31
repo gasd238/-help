@@ -11,10 +11,11 @@ function getLocation() {
       if (results[1])
       {
       $('#dogne').html(results[1].formatted_address);
+      req.session.town = results[1].formatted_address;
       }
   });   
   });
 }else{
   alert("위치 정보를 지원하지 않습니다.");
   }
-}
+};

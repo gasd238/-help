@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var postdb = require('../models/postDB');
 var logindb = require('../models/loginDB');
+var location = require('../public/js/writepost');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -42,37 +43,34 @@ router.get('/adminpage', function(req, res){
   })
 });
 
+// router.post('/mypage', (req, req, next)=>{
+//   logindb.profile(req.session.user_id, (err, docs)=>{
+//     if(err){
+//       console.log(err.message);
+//     }else{
+      
+//     }
+//   })
+// })
+
 router.get('/mypage', function(req, res){
   if (req.session.user_id != null) {
-    var id = req.session.user_id;
-    logindb.profile(req.session.user_id, function (err, data) {
-      if (err) {
-        console.log(err);
-      }
-      if (data) {
-        req.session.name = data.name;
-        console.log(req.session.name);
-      }
-    });
     var post_count = 0;
-    console.log(id + ", " + req.session.name);
-    logindb.profile(id, function (err, show) {
+    logindb.profile(req.session.user_id, function (err, show) {
       if (err) {
         console.log("logindb: " + err);
         res.send('<script type="text/javascript">alert("에러가 발생했습니다."); document.location.href="/";</script>');
         res.end();
         return;
       }
-      postdb.getmypost(req.session.name, function (err, data){
+      postdb.getmypost(req.session.user_id, function (err, data){
         if(data){
           for(i=0; i < data.length; i++){
             post_count += 1;
           }
-          console.log("이름: " + show.name + ", 글 개수: " + post_count);
-        }else{
-          console.log("이름: " + show.name + ", 글 개수: " + 0);
         }
-        res.render('../views/User/MyPage.ejs', { post: data, name: show.name, islogin: 'login' });
+        console.log("이름: " + show.name + ", 글 개수: " + post_count);
+        res.render('../views/User/MyPage.ejs', { post: data, PInfo: show, islogin: 'login' });
         res.end();
       });
     });
@@ -92,14 +90,14 @@ router.post('/writebooks', function(req, res){
   var writedate = String(date.getFullYear()) + '년 ' + String(date.getMonth() + 1) + '월 ' + String(date.getDate()) + '일';
   var post = req.body.post || req.query.post;
   var field = req.body.field || req.query.field;
-  var town = req.body.town || req.query.town;
+  var town = ;
 
   logindb.profile(req.session.user_id, function (err, data) {
     if (err) {
       console.log(err);
     }
     if (data) {
-      console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + data[0].name + ', 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
+      console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + data.name + ', 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
 
       if (postdb) {
         postdb.addpost(title, writedate, data.name, post, field, town,
