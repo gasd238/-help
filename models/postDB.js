@@ -49,7 +49,6 @@ exports.getmypost = function (name, callback) {
                 callback(err, null);
                 return;
             }
-
             if (data.length > 0) {
                 callback(null, data);
             }
