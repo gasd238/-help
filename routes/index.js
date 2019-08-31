@@ -55,8 +55,9 @@ router.get('/mypage', function(req, res){
       }
 
       if (show) {
-        console.log("이름: " + show[0].name);
-        res.render('../views/User/MyPage.ejs', { name: show[0].name, islogin: 'login'});
+        console.log(show);
+        console.log("이름: " + show.name);
+        res.render('../views/User/MyPage.ejs', { name: show.name, islogin: 'login'});
         res.end();
       }
     });
@@ -82,12 +83,11 @@ router.post('/writebooks', function(req, res){
     if (err) {
       console.log(err);
     }
-
     if (data) {
-      console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + data[0].name + '     , 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
+      console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + data.name + '     , 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
 
       if (writedb) {
-        writedb.addpost(title, writedate, data[0].name, post, field, town,
+        writedb.addpost(title, writedate, data.name, post, field, town,
           function (err, result) {
             if (err) {
               console.log(err);
