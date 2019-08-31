@@ -41,7 +41,6 @@ router.get('/test2', function (req, res) {
 
 router.get('/adminpage', function(req, res){
   logindb.allprofile((err, data)=>{
-    console.log(data)
     res.render('../views/User/administerpage.ejs', {profile: data})
   })
 });
