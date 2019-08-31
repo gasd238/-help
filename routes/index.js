@@ -89,6 +89,18 @@ router.get('/writepost', function(req, res){
   res.render('../views/Post/writepost.ejs');
 });
 
+// router.get('/readpost/:_id', function(req, res, next){
+
+//   postdb.readpost({_id : req.params._id},(err, docs)=>{
+//     if(err){
+//       console.log(err.message);
+//     }else{
+//       console.log(docs);
+//       res.render('../views/Post/readpost.ejs', {post : docs, islogin : 'login'});
+//     }
+//   })
+// })
+
 router.post('/writeposts', function(req, res){
   var title = req.body.title || req.query.title;
   var date = new Date();
