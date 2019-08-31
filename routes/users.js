@@ -78,7 +78,6 @@ router.post('/adduser', function (req, res) {
   var PW = req.body.pass || req.query.pass;
   var Name = req.body.name || req.query.name;
   var PW_Correct = req.body.pass_correct || req.query.pass_correct;
-  var Email = req.body.email || req.query.email;
   var Phone = req.body.phone || req.body.phone;
   console.log('ID : ' + ID + ', PW : ' + PW + ' Name: ' + Name + ' PW_Correct ' + PW_Correct);
 
@@ -104,7 +103,7 @@ router.post('/adduser', function (req, res) {
                 res.end();
                 return;
               } else {
-                db.addUser(ID, PW, Name, Email, Phone,
+                db.addUser(ID, PW, Name, Phone,
                   function (err, result) {
                     if (err) {
                       console.log(err);
