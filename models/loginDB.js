@@ -134,4 +134,10 @@ exports.allprofile = (callback)=>{
     members.find({}).toArray((err, data)=>{
         callback(null, data);
     })
-};
+}; //관리자 페이지에 접속 시 모든 유저 정보를 가져옴
+
+exports.AddPoints = function (name, point, callback) {
+    var members = database.collection('members');
+    members.updateMany({ "name": name }, { $set: { "point": point }});
+    console.log("success");
+}; //포인트 추가
