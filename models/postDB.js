@@ -75,7 +75,7 @@ exports.addpost = function (obj, callback) {
     var posts = database.collection('post');
     posts.insertMany([{ "title": obj.title, "writedate": obj.writedate, "name": obj.name,
      "post": obj.post, "field": obj.field, "town": obj.town,
-    "latitude":parseFloat(obj.latitude), "longitude":parseFloat(obj.longitude), "key":obj.key }],
+    "latitude":parseFloat(obj.latitude), "longitude":parseFloat(obj.longitude), "key":obj.key, "attender":parseInt(0) }],
         function (err, result) {
             if (err) {
                 callback(err, null);
@@ -93,7 +93,20 @@ exports.addpost = function (obj, callback) {
 
 exports.delpost = function (query, callback){
     var post = database.collection('post');
-    post.findOneAndDelete(query, (err, data)=>{
+    post.findOne(query, (err,data)=>{
+        post.findOneAndDelete(query, (err, data2)=>{
+            if(err){
+                console.log(err.message);
+            }else{
+                callback(err, data);
+            }
+        });
+    })
+}
+
+exports.attendpost = function (query, callback){
+    var post = database.collection('post');
+    post.findOneAndUpdate(query, {$inc:{"attender":1}}, (err, data)=>{
         if(err){
             console.log(err.message);
         }else{
