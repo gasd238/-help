@@ -10,6 +10,9 @@
     <link rel='stylesheet' href='/stylesheets/Mypage.css' />
 </head>
 <body>
+    <div class="title">
+        <a href="/"><h1>Help</h1></a>
+    </div> <!--이거 추가했어요-->
     <div class="container h-100">
         <div class="row justify-content-center align-items-center h-100">
             <div class="col-12 col-sm-8 col-md-10 col-lg-20">
@@ -18,26 +21,26 @@
                         <a href="./users/editprofile"><img class="profile-picture rounded-circle"
                                 src="Images/basic_images.jpg" /></a>
                         <h2 class="text-warning h4 font-weight-bold mt-3 mb-1">
-                            대충 이름 들어갈곳
+                            <%= name %>
                         </h2>
                         <p class="text-muted text-uppercase font-weight-light">
                             직책 / 상태란
                         </p>
                         <p class="px-3 mt-4">
-                            자기 소개 해보세요 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Possimus rem placeat adipisci omnis commodi.
-                            Ducimus veniam repellendus perferendis natus cum molestiae eius culpa voluptates quaerat
-                            corporis. I
-                            psa nemo perspiciatis tenetur.
+                            자기 소개 해보세요
                         </p>
                     </div>
                 </div>
             </div>
             <div class="article">
-                <h3>(타이틀로 교체할 부분)</h3>(글이 드러가거나 공백)Lorem ipsum dolor sit amet consectetur adipisicing elit. A,
-                animi
-                doloribus nihil minus libero temporibus totam qui officiis accusamus corporis nulla! Ducimus, ex.
-                Culpa amet, atque vel incidunt natus repellendus.
+                <b>작성한 글 목록</b> <!--이것도 추가했어요-->
+                <br>
+                <% if(post != null) { %>
+                    <% post.reverse(); %>
+                    <% for(i = 0; i < post.length; i++) { %>
+                        <h3><%= post[i].title %></h3><%= post[i].post %>
+                    <% } %>
+                <% } %>
             </div>
         </div>
     </div>

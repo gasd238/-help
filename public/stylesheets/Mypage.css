@@ -31,6 +31,8 @@
   background: #d9d9d9;
   padding: 1.5rem;
   border-radius: 0.5rem;
+  width: 70rem;
+  display: inline;
 }
 
 .profile-card .profile-picture {
