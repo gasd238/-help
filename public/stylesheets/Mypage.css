@@ -2,14 +2,11 @@
   font-family: Argon;
   src: url('../fonts/ArgonPERSONAL-Regular.otf');
 }
-<<<<<<< HEAD
-=======
 
 .myInfo{
   padding-top: 20%;
 }
 
->>>>>>> parent of 1757d0e... Merge branch 'master' of https://github.com/gasd238/-help
 .description{
   margin-right: 60%; 
   font-size: 20px;
@@ -72,18 +69,6 @@
   padding: 0 8px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-}
-.profile-card .profile-picture {
-  width: 7.4rem;
-}
-
-.profile-card .social-section {
-  margin-top: 2rem;
-}
-
-.profile-card .social-section a {
-  font-size: 1.3rem;
-  padding: .2rem .6rem;
 }
 
 .show_file{

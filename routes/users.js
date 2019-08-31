@@ -20,9 +20,8 @@ router.post('/login', function (req, res) {
 
         if (data) {          //성공시 작동함
           console.log("로그인 성공!");
-          req.session.user_id = ID, // 아이디
-          req.session.password = PW //비밀번호
-          console.log(ID + ", " + PW);
+          req.session.user_id = req.body.id, // 아이디
+          req.session.password = req.body.password //비밀번호
           res.redirect('/');
           res.end();
         } else {                //유저가 없을 경우

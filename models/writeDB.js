@@ -39,29 +39,6 @@ exports.getpost = function(callback){
     );
 }; //글 가져오기
 
-exports.getmypost = function (name, callback) {
-    var post = database.collection('post');
-    var result = post.find({"name": name});
-    
-    result.toArray(
-        function (err, data) {
-            if (err) {
-                callback(err, null);
-                return;
-            }
-
-            if (data.length > 0) {
-                callback(null, data);
-            }
-            else {
-                callback(null, null);
-            }
-        }
-
-    );
-}; //자신의 글
-
-
 exports.addpost = function (title, date, name, post, field, town, callback) {
     var posts = database.collection('post');
 

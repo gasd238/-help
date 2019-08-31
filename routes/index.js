@@ -1,16 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var postdb = require('../models/postDB');
+var writedb = require('../models/writeDB');
 var logindb = require('../models/loginDB');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  postdb.getpost(
+  writedb.getpost(
     function (err, data) {
-      if(err){
-        console.log(err);
-      }
-
       if (req.session.user_id != null) {
         res.render('../views/index.ejs', { islogin: 'login', post: data})
       } else {
@@ -41,41 +37,34 @@ router.get('/test2', function (req, res) {
 
 router.get('/adminpage', function(req, res){
   logindb.allprofile((err, data)=>{
+    console.log(data)
     res.render('../views/User/administerpage.ejs', {profile: data})
   })
 });
 
 router.get('/mypage', function(req, res){
   if (req.session.user_id != null) {
-    logindb.profile(req.session.user_id, function (err, data) {
+    var id = req.session.user_id;
+
+    logindb.profile(id, function (err, show) {
       if (err) {
-        console.log(err);
-      }
-      if (data) {
-        req.session.name = data.name;
-        console.log(req.session.name);
-      }
-    });
-    var post_count = 0;
-    console.log(req.session.user_id + ", " + req.session.name);
-    logindb.profile(req.session.user_id, function (err, show) {
-      if (err){
-        console.log("logindb: " + err);
+        console.log('오류 발생!');
         res.send('<script type="text/javascript">alert("에러가 발생했습니다."); document.location.href="/";</script>');
         res.end();
         return;
       }
 
       if (show) {
-        console.log("이름: " + show[0].name);
-        res.render('../views/User/MyPage.ejs', { name: show[0].name, islogin: 'login'});
+        console.log(show);
+        console.log("이름: " + show.name);
+        res.render('../views/User/MyPage.ejs', { name: show.name, islogin: 'login'});
         res.end();
-      } else {
+      }
+    });
+  } else {
     res.send('<script type="text/javascript">alert("로그인을 먼저 해주세요!"); document.location.href="/";</script>');
     res.end();
-      }
-  });
-};
+  }
 });
 
 router.get('/writebooks', function(req, res){
@@ -94,18 +83,11 @@ router.post('/writebooks', function(req, res){
     if (err) {
       console.log(err);
     }
-
     if (data) {
-<<<<<<< HEAD
       console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + data.name + '     , 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
-      if (postdb) {
-        postdb.addpost(title, writedate, data.name, post, field, town,
-=======
-      console.log('제목 : ' + title + ', 날짜 : ' + writedate + ', 이름: ' + data[0].name + '     , 내용: ' + post + ', 분류: ' + field + ', 지역: ' + town);
 
       if (writedb) {
-        writedb.addpost(title, writedate, data[0].name, post, field, town,
->>>>>>> parent of 4dfa1d1... find->findone
+        writedb.addpost(title, writedate, data.name, post, field, town,
           function (err, result) {
             if (err) {
               console.log(err);
@@ -136,4 +118,5 @@ router.post('/writebooks', function(req, res){
     }
   });
 });  //글 작성
+
 module.exports = router;
