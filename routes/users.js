@@ -193,7 +193,4 @@ router.post('/editprofileprocess', function(req, res){
   }
 });
 
-router.get('/adminpage', function(req, res){
-  res.render('../views/User/administerpage.ejs')
-});
 module.exports = router;

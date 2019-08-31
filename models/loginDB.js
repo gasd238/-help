@@ -140,3 +140,10 @@ exports.editprofile = function (id, password, callback){
     console.log("업데이트 성공!");
     callback(null, true);
 }; //프로필 수정
+
+exports.allprofile = (callback)=>{
+    var members = database.collection('members');
+    members.find({}).toArray((err, data)=>{
+        callback(null, data);
+    })
+};

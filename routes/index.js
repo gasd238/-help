@@ -35,6 +35,14 @@ router.get('/test2', function (req, res) {
   res.render('../views/User/test2.ejs');
 });
 
+router.get('/adminpage', function(req, res){
+  logindb.allprofile((err, data)=>{
+    console.log(data)
+    res.render('../views/User/administerpage.ejs', {profile:data})
+  })
+});
+
+
 router.get('/mypage', function(req, res){
   if (req.session.user_id != null) {
     var id = req.session.user_id;
