@@ -114,12 +114,13 @@ router.get('/writepost', function(req, res){
 // })
 
 router.post('/writeposts', function(req, res){
-  var title = req.body.title || req.query.title;
+  var title = req.body.title;
   var date = new Date();
   var writedate = String(date.getFullYear()) + '년 ' + String(date.getMonth() + 1) + '월 ' + String(date.getDate()) + '일';
-  var post = req.body.post || req.query.post;
-  var field = req.body.field || req.query.field;
-  var town = req.body.town || req.query.town;
+  var post = req.body.post;
+  var field = req.body.field;
+  var town = req.body.town;
+  var key = Math.round( Math.random() * 0xFFFFFF ).toString(16);
 
   logindb.profile(req.session.user_id, function (err, data) {
     if (err) {

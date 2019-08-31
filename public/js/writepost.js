@@ -10,7 +10,7 @@ function getLocation() {
   geocoder.geocode({'latLng' : cords}, function(results, status) {
       if (results[1])
       {
-      $('#dogne').val(results[1].formatted_address);
+      $('#dongne').val(results[1].formatted_address);
       }
   });   
   });
