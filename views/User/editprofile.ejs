@@ -10,6 +10,12 @@
 </head>
 
 <body>
+    <form action="/uploadpicture" method="POST" enctype="multipart/form-data">
+        <input type="file" name="picture" accept="application/x-zip-compressed,image/*">
+        <input class="form-control" type="text" name="description" placeholder="Description or Message">
+        <input class="btn btn-primary" type="submit" value="submit">
+    </form>
+
     <form action="./editprofileprocess" method="POST">
         <div>
             <h1>정보 수정</h1><br>
