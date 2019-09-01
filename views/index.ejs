@@ -1,38 +1,45 @@
 <!--메인 페이지-->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Help</title>
-    <link rel='stylesheet' href='/stylesheets/index.css' />
-  </head>
-  
-  <body>
-    <div class="top-bar">
-      <% if(islogin == 'login'){ %>
-      <a href='./users/logout' class="deco-none">로그아웃</a>
-      <% } else { %>
-      <a href='./login' class="deco-none">로그인</a>
-      <% } %>
-      | <a href='./mypage' class="deco-none">마이페이지</a>
-      | <a href="./exchange" class="deco-none">교환소입니다!</a>
-    </div>
-    <div class="title">
-        <a href="/"><h1>Help</h1></a>
-    </div>
-    <p>Welcome to Help</p>
-    <% if(islogin == 'login'){ %>
-      <a href="./writepost">글쓰기</a>
-    <% } %>
 
-    <% if(post != null) { %>
-      <% post.reverse(); %>
-      <% for(i = 0; i < post.length; i++) { %>
-        <div class="post-bar">
-            <a href="/readpost/<%= post[i].key %>"><p>제목: <%= post[i].title %></p></a>
-        </div>
-      <% } %>
+<head>
+  <title>Help</title>
+  <link rel='stylesheet' href='/stylesheets/index.css' />
+</head>
+
+<body>
+  <div class="top-bar">
+    <% if(islogin == 'login'){ %>
+    <a href='./users/logout' class="deco-none">로그아웃</a>
+    <% } else { %>
+    <a href='./login' class="deco-none">로그인</a>
     <% } %>
-    </div>
-    <br>
-  </body>
+    | <a href='./mypage' class="deco-none">마이페이지</a>
+    | <a href="./exchange" class="deco-none">교환소입니다!</a>
+  </div>
+  <div class="title">
+    <a href="/">
+      <h1>Help</h1>
+    </a>
+
+    <p>Welcome to Help</p>
+  </div>
+  <% if(islogin == 'login'){ %>
+  <a href="./writepost">글쓰기</a>
+  <% } %>
+
+  <% if(post != null) { %>
+  <% post.reverse(); %>
+  <% for(i = 0; i < post.length; i++) { %>
+  <div class="post-bar">
+    <a href="/readpost/<%= post[i].key %>">
+      <p>제목: <%= post[i].title %></p>
+    </a>
+  </div>
+  <% } %>
+  <% } %>
+  </div>
+  <br>
+</body>
+
 </html>
