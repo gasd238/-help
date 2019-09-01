@@ -1,7 +1,13 @@
 figure {
-    display: inline-block;
+    display: inline-table;
     margin:3%;
-    width: 13%;
+}
+figcaption{
+    display: inline-block;
+    font-weight: bold;
+}
+.whole{
+    margin: 0rem 3rem;
 }
 
 h3{
@@ -14,10 +20,8 @@ h3{
     background-color : skyblue;
 }
 
-.goods{
-
-    max-width: 100%;
-    height: auto !important;
+.goods{ 
+    width: 11rem;
     border: 2px solid black;
 }
 
@@ -29,30 +33,23 @@ a{
 .small-title{
     font: 16px KoPubWorld돋움체 Light;
     text-align: center;
-    border: 3rem solid #79F1F2;
-    margin: 0 38% -12px 38%;
+    padding: 0.2em;
     border-radius: 4px;
     background-color: #79F1F2;
     color: #3A506A;
-    border-top-width: 11px;
-    border-bottom-width: 11px;
   }
   
   .text-box{
     border: 5px solid #83B4F0;
     font: 16px KoPubWorld돋움체 Light;
-    margin-top: -12px;
+    margin-top: 0.8rem;
     background-color: ghostwhite;
-    margin: 0 18% 0 18%;
-
     padding: 0 3% 0 3%;
-   
   }
   
   #point{
-      font: 45px THE삐끗삐끗;
+      font: 2rem THE삐끗삐끗;
       border-collapse: collapse;
-      margin-bottom: -4px;
       padding: 15px 0 15px 20px;
   }
 

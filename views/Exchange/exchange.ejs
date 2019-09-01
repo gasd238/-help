@@ -1,32 +1,40 @@
 <!--교환소 페이지-->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/index.css' />
-    <link rel='stylesheet' href='/stylesheets/exchange.css' />
-    <script src="https://kit.fontawesome.com/ef6a31a5d4.js"></script>
 
-  </head>
-  <body>
-    <div class="title">
-      <a href="/"><h1>Help</h1></a>
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/index.css' />
+  <link rel='stylesheet' href='/stylesheets/exchange.css' />
+  <script src="https://kit.fontawesome.com/ef6a31a5d4.js"></script>
+
+</head>
+
+<body>
+  <div class="title">
+    <a href="/">
+      <h1>Help</h1>
+    </a>
   </div>
-    <div class="small-title"><h2><i class="fas fa-star"></i>교환소!</h2></div>
+  <div class="whole">
+    <div class="small-title">
+      <h2><i class="fas fa-star"></i>교환소!</h2>
+    </div>
     <div>
-      <div class="text-box" id="point">PT  <span class="point-num"><%=point %></span> !</div>
+      <div class="text-box" id="point">PT <span class="point-num"><%=point %></span> !</div>
     </div>
     <div class="text-box">
-
-      <h3>교환 가능한 품목</h1><hr class="lines">
-      <%for(priceNum = 0; priceNum<=goods.length-1; priceNum++){%>
+      <h3>교환 가능한 품목</h1>
+        <hr class="lines">
+        <%for(priceNum = 0; priceNum<=goods.length-1; priceNum++){%>
         <figure>
-            <a href="http://localhost/exchange/goods/<%=goods[priceNum].G_id%>"><img src="<%=goods[priceNum].Src%>" class="goods" alt=""></a>
-            <figcaption><%=goods[priceNum].Name%><br>가격     <%=goods[priceNum].Price%>포인트 <br>수량 : <%=goods[priceNum].Amount%></figcaption>
+          <b>[<%=goods[priceNum].Name%>] </b><br>
+          <a href="http://localhost/exchange/goods/<%=goods[priceNum].G_id%>"><img src="<%=goods[priceNum].Src%>"
+              class="goods" alt=""></a>
+          <figcaption>가격 : <%=goods[priceNum].Price%> <br>포인트 수량 : <%=goods[priceNum].Amount%></figcaption>
         </figure>
-      <%}%>
-    </div>
-    <div>
-    </div>
+        <%}%>
+      </div>
+  </div>
   </body>
 </html>
