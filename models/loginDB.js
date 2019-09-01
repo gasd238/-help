@@ -171,17 +171,6 @@ exports.AddPoints = function (obj, callback) {
     });
 }; //포인트 추가
 
-exports.AddPoints = function (obj, callback) {
-    var members = database.collection('members');
-    members.updateOne({ "name": obj.name }, { $set: { point: parseInt(obj.point) }}, function (err, data) {
-        if (err) {
-            callback(err, null);
-        } else {
-            callback(null, data);
-        }
-    });
-}; //포인트 추가
-
 exports.v_time = function (obj, callback) {
     var members = database.collection('members');
     members.updateOne({ "name": obj.name }, { $set: { vtime: parseInt(obj.vtime) }}, function (err, data) {
