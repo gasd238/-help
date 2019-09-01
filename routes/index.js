@@ -2,10 +2,6 @@ var express = require('express');
 var router = express.Router();
 var postdb = require('../models/postDB');
 var logindb = require('../models/loginDB');
-var imagedb = require('../models/ImageDB');
-var multer = require('multer');
-var fs = require('fs-extra');
-var upload = multer({ limits: { fileSize: 2000000 }, dest: '/uploads/' });
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -197,33 +193,5 @@ router.post('/writeposts', function(req, res){
     }
   });
 });  //글 작성
-
-router.post('/uploadpicture', upload.single('picture'), function (req, res) {
-  if (req.file == null) {
-    res.render('index', { title: 'Please select a picture file to submit!' });
-  } else {
-    imagedb.uploadPicture(req.file.path, req.body.description, req.file.mimetype, req.file.size, function (err, data) {
-      if (err) {
-        console.log(err);
-      } else {
-        fs.remove(req.file.path, function (err) {
-          if (err) { console.log(err) };
-          res.redirect('/');
-        });
-      }
-    });
-  }
-});  //사진 업로드
-
-router.get('/picture/:picture', function (req, res) {
-  imagedb.getPicture(req.params.picture, function (err, results) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.setHeader('content-type', results.contentType);
-      res.send(results.img.buffer);
-    }
-  });
-});  //사진 가져오기
 
 module.exports = router;

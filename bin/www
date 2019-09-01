@@ -10,7 +10,6 @@ var http = require('http');
 var database = require('../models/loginDB');
 var Exdatabase = require('../models/exchangeDB');
 var postdatabase = require('../models/postDB');
-var Imagedatabase = require('../models/ImageDB');
 //const mongocrypt = require('mongocrypt');
 
 /**
@@ -32,7 +31,6 @@ var server = http.createServer(app);
 database.connectDB();
 Exdatabase.connectDB();
 postdatabase.connectDB();
-Imagedatabase.connectDB();
 // if (mongocrypt.db.isConnected()) {
 //   // Set the encryption key
 //   // Important: It has to be a string with the length of 32
