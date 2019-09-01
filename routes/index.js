@@ -127,7 +127,7 @@ router.get('/readpost/:key', function(req, res, next){
     res.send('<script type="text/javascript">alert("로그인을 먼저 해주세요!"); document.location.href="/";</script>');
     res.end();
   }
-})
+});
 
 router.post('/delpost', function(req,res,next){
   postdb.delpost({"key":req.body.key}, (err, data)=>{
@@ -135,11 +135,11 @@ router.post('/delpost', function(req,res,next){
     res.end();
     return;
   })
-})
+});
 
 router.get('/post_result/:attender', function(req,res,next){
   res.render('../views/Post/post_result.ejs', {title: '!help', attender:parseInt(req.params.attender)});
-})
+});
 
 router.post('/attend', function(req,res,next){
   postdb.attendpost({"key":req.body.key}, (err, data)=>{
@@ -147,7 +147,7 @@ router.post('/attend', function(req,res,next){
     res.end();
     return;
   })
-})
+});
 
 router.post('/writeposts', function(req, res){
   var date = new Date();
